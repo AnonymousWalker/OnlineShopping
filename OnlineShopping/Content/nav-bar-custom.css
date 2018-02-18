@@ -1,0 +1,18 @@
+﻿.navbar-brand {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.navbar-inverse {
+    background-color: #062B73;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #35F6AF;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #FFFF1C;
+  background-color: transparent;
+}
