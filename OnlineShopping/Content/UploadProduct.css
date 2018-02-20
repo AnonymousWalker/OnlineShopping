@@ -1,0 +1,42 @@
+﻿label {
+    font-size: 16px;
+}
+
+
+
+#fileBrowser {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+
+#fileBrowser input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.panel-body {
+    width:100%;
+}
+#leftpanel {
+    width: 50%;
+    min-width:150px;
+    float: left;
+    padding-top: 10px;
+    padding-left: 25px;
+    border-right: 1px outset;
+}
+
+#rightpanel {
+    float: left;
+    min-width: 250px;
+    padding-top: 10px;
+    padding-left: 15px;
+}

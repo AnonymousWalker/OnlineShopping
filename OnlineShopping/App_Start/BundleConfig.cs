@@ -27,7 +27,7 @@ namespace OnlineShopping
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/bundles/customCSS")
-                .Include("Content/nav-bar-custom"));
+                .Include("~/Content/navbarcustom.css"));
         }
     }
 }
