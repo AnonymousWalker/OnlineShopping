@@ -8,13 +8,12 @@
     position: relative;
     overflow: hidden;
     margin: 10px;
+    margin-top: 15px;
+    margin-left: 0px;
 }
 
 #fileBrowser input.upload {
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
     padding: 0;
     font-size: 20px;
     cursor: pointer;
@@ -27,10 +26,11 @@
 }
 #leftpanel {
     width: 50%;
-    min-width:150px;
+    min-width: 200px;
     float: left;
     padding-top: 10px;
     padding-left: 25px;
+    padding-right: 25px;
     border-right: 1px outset;
 }
 
@@ -39,4 +39,17 @@
     min-width: 250px;
     padding-top: 10px;
     padding-left: 15px;
+}
+
+#image {
+    max-height: 350px;
+    max-width: 350px;
+}
+
+#button-area {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+#button-area > button {
+    margin-right:5px;
 }

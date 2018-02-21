@@ -2,41 +2,58 @@
     ViewBag.Title = "UploadProduct";
 }
 <link href="~/Content/UploadProduct.css" rel="stylesheet" />
-
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading"><h3 style="padding-left:10px"><b>Upload new product</b></h3></div>
         <div class="panel-body">
             @using (Html.BeginForm())
             {
-                <div id="leftpanel" class="col-md-6">
-                    <div class="form-group">
-                        <label>Product Name: </label><input type="text" class="form-control" id="productname">
+                <div class="row">
+                    <div id="leftpanel" class="col-md-6">
+                        <div class="form-group">
+                            <label>Product Name: </label>
+                            <input id="productname" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Price: </label>
+                            <input id="price" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Description: </label>
+                            <input id="description" type="text" class="form-control">
+                        </div>
+                        <div id="browsergroup" class="form-group">
+                            <label>Choose image: </label>
+                            <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                            <span id="fileBrowser" class="btn btn-default">
+                                @*<span class="glyphicon glyphicon-folder-open"></span>*@
+                                Browse
+                                <input id="browsebtn" type="file" class="upload" />
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Price: </label><input type="text" class="form-control" id="price">
-                    </div>
-                    <div class="form-group">
-                        <label>Description: </label><input type="text" class="form-control" id="description">
-                    </div>
-                    <div class="form-group">
-                        <label>Choose image: </label>
-                        <span id="fileBrowser" class="btn btn-default">
-                            Browse
-                            <input type="file" class="upload" />
-                        </span>
+                    <div id="rightpanel" class="col-md-6">
+                        <div class="form-group">
+                            <label>Preview</label><br />
+                            <span>
+                                <img id="image" src="#" alt="your image" />
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div id="rightpanel" class="col-md-6">
-                    <div class="form-group">
-                        <label>Preview</label><br/>
-                        <span>
-                            <img id="image" src="http://placehold.it/250" alt="your image" />
-                        </span>
-                    </div>
+                <div>
+                        <div id="button-area" class="form-group">
+                            <button id="submitbtn" type="submit" class="btn btn-lg btn-primary">Save</button>
+                            <button id="clearbtn" type="reset" class="btn btn-lg btn-default">Clear</button>
+                        </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/Custom/UploadImage.js"></script>
+}
 
