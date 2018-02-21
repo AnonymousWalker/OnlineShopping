@@ -1,12 +1,15 @@
 ﻿$(document).ready(function () {
-    $("#browserbtn").click(function (e) {
+    $("#fakeuploadbtn").click(function (e) {
         e.preventDefault();
-        readURL(this)
+        //$("#browsebtn").click();
+        
     })
 })
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
+$("#browsebtn").on('click',UploadFile(this));
+
+function UploadFile() {
+    if (this.files && this.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -14,6 +17,6 @@ function readURL(input) {
                 .attr('src', e.target.result);
         };
 
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(this.files[0]);
     }
 }
