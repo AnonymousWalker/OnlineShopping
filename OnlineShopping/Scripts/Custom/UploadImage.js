@@ -19,5 +19,10 @@
 
     $("#browsebtn").change(function () {
         UploadFile(this);
-    })
+    });
+
+    $("#clearbtn").click(function (e) {
+        //    e.preventDefault();
+        $("#image").attr('src', null);
+    });
 });

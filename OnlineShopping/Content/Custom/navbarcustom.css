@@ -29,7 +29,7 @@
         line-height: 20px;
         max-height: 340px;
         overflow-x: visible;
-        color: #efbd3e;
+        /*color: #f2cb6a;*/
     }
 
 @media (min-width: 768px) {
@@ -48,11 +48,8 @@
     }
 }
 
-.glyphicon-search {
-    color: #eaeade;
-}
 
-#carticon, #uploadlink {
-    color: #efbd3e;
+#carticon, #uploadlink, .glyphicon-search {
+    /*color: #ffdb66;*/
 }
 
