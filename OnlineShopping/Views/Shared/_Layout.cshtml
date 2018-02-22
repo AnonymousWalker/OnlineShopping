@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/bundles/customCSS")
+    @Styles.Render("~/bundles/customLayout")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -27,17 +27,15 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul id="navbar-right" class="nav navbar-nav navbar-right">
-                    <li><span>Search</span></li>
+                    <li><span><i class="glyphicon glyphicon-search"></i></span></li>
                     <li>
                         <span>
-                            <div>
-                                <a>
-                                    <span id="CartIcon">CartIcon</span>
+                                <a id="carticon">
+                                    Cart <i class="glyphicon glyphicon-shopping-cart"></i>
                                 </a>
-                            </div>
                         </span>
                     </li>
-                    <li><a href="@Url.Action("UploadProduct","Product")">Upload</a></li>
+                    <li><a id="uploadlink" href="@Url.Action("UploadProduct","Product")">Upload <i class="glyphicon glyphicon-upload"></i></a></li>
                 </ul>
             </div>
         </div>

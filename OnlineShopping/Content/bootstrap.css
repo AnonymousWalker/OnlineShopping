@@ -3774,7 +3774,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav {
-  padding-left: 0;
+  padding-left: 20px;
   margin-bottom: 0;
   list-style: none;
 }
@@ -4509,7 +4509,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #f7f4de;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,

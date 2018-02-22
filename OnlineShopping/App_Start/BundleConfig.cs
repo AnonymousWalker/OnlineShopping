@@ -25,9 +25,13 @@ namespace OnlineShopping
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
-            bundles.Add(new StyleBundle("~/bundles/customCSS")
-                .Include("~/Content/navbarcustom.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css"));
+
+            
+
+            bundles.Add(new StyleBundle("~/bundles/customLayout")
+                .Include("~/Content/Custom/navbarcustom.css"));
         }
     }
 }
