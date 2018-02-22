@@ -1,22 +1,23 @@
 ﻿$(document).ready(function () {
     $("#fakeuploadbtn").click(function (e) {
         e.preventDefault();
-        //$("#browsebtn").click();
-        
-    })
-})
+        $("#browsebtn").click();
+    });
 
-$("#browsebtn").on('click',UploadFile(this));
+    function UploadFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-function UploadFile() {
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image')
+                    .attr('src', e.target.result);
+            };
 
-        reader.onload = function (e) {
-            $('#image')
-                .attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(this.files[0]);
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-}
+
+    $("#browsebtn").change(function () {
+        UploadFile(this);
+    })
+});
