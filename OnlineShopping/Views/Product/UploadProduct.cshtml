@@ -6,8 +6,9 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h3 style="padding-left:10px"><b>Upload new product</b></h3></div>
         <div class="panel-body">
-            @using (Html.BeginForm(null,null,FormMethod.Post,new { @id = "form-upload" }))
+            @using (Html.BeginForm(null,null,FormMethod.Post,new { @id = "form-upload", enctype = "multipart/form-data"}))  //without the enctype, the form only submit the image name
             {
+                @Html.ValidationSummary()
                 <div class="row">
                     <div id="leftpanel" class="col-md-6">
                         <div class="form-group">

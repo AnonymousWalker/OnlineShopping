@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShopping.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,11 @@ namespace OnlineShopping.Controllers
         }
 
         public ActionResult UploadProduct()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UploadProduct(UploadProductModel model)
         {
             return View();
         }

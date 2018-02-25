@@ -1,22 +1,26 @@
-﻿@{
+﻿@model List<ProductViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <a href="@Url.Action("ProductInformation","Product")">This area for prominent item (picture link)</a>
 </div>
-
 <div class="row">
-    <div class="col-md-3">
-        Item 1
-    </div>
-    <div class="col-md-3">
-        Item 2
-    </div>
-    <div class="col-md-3">
-        Item 3
-    </div>
-    <div class="col-md-3">
-        Item 4
-    </div>
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3">
+            <h4>@Html.ActionLink(product.ProductName, "ProductInformation")</h4>
+            <p>@product.Description</p>
+        </div>
+        @*<div class="col-md-3">
+                Item 2
+            </div>
+            <div class="col-md-3">
+                Item 3
+            </div>
+            <div class="col-md-3">
+                Item 4
+            </div>*@
+    }
 </div>

@@ -25,4 +25,7 @@
         //    e.preventDefault();
         $("#image").attr('src', null);
     });
+
+
+
 });
