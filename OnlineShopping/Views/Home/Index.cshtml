@@ -10,7 +10,7 @@
     @foreach (var product in Model)
     {
         <div class="col-md-3">
-            <h4>@Html.ActionLink(product.ProductName, "ProductInformation")</h4>
+            <h4>@Html.ActionLink(product.ProductName, "ProductInformation","Product", new { id = product.ProductId }, null)</h4>
             <p>@product.Description</p>
         </div>
         @*<div class="col-md-3">

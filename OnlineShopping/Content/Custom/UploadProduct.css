@@ -40,8 +40,8 @@
 }
 
 #image {
-    max-height: 350px;
-    max-width: 350px;
+    max-height: 300px;
+    max-width: 300px;
     min-width: 100px;
     min-height: 100px;
 }

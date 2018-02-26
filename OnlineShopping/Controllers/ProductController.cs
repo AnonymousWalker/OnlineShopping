@@ -15,7 +15,7 @@ namespace OnlineShopping.Controllers
             return View();
         }
 
-        public ActionResult ProductInformation()   //database
+        public ActionResult ProductInformation(int id)   //database
         {
             return View();
         }
@@ -24,9 +24,17 @@ namespace OnlineShopping.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult UploadProduct(UploadProductModel model)
+        public ActionResult UploadProduct(UploadProductModel model, HttpPostedFileBase image =null)
         {
+            if(ModelState.IsValid)
+            if (image != null)
+            {
+                    model.ImageName = image.FileName;
+                    model.Content = new byte[image.ContentLength];
+                    image.InputStream.Read(model.Content, 0, image.ContentLength);
+            }
             return View();
         }
 
