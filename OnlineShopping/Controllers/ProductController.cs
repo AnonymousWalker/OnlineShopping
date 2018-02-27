@@ -1,4 +1,5 @@
 ﻿using OnlineShopping.Models;
+using OnlineShopping.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,11 @@ namespace OnlineShopping.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Item
+        private ControllerService _service;
+        public ProductController(ControllerService service)
+        {
+            _service = service;
+        }
         public ActionResult Index()
         {
             return View();
@@ -17,6 +22,7 @@ namespace OnlineShopping.Controllers
 
         public ActionResult ProductInformation(int id)   //database
         {
+            _service.GetProductInfo(id);
             return View();
         }
 
