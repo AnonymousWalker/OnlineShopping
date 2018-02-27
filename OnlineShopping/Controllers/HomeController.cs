@@ -1,4 +1,5 @@
 ﻿using OnlineShopping.Models;
+using OnlineShopping.Models.DomainModel;
 using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace OnlineShopping.Controllers
 {
     public class HomeController : Controller
     {
-        private DatabaseContext Db;
-        public HomeController(DatabaseContext db)
+        private OnlineShoppingDbContext Db;
+        public HomeController(OnlineShoppingDbContext db)
         {
             Db = db;
         }
@@ -22,7 +23,7 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Index()
         {
-            var getproducts = Db.Products.Select(x => new ProductViewModel
+            var products = Db.Products.Select(x => new ProductViewModel
             {
                 ProductId = x.ProductId,
                 ProductName = x.ProductName,
@@ -30,8 +31,7 @@ namespace OnlineShopping.Controllers
                 DateCreated = x.DateCreated,
                 Description = x.Description
             }).ToList();
-            var products = new List<ProductViewModel>(getproducts);
-            return View(products);
+            return View(new List<ProductViewModel>(products));
         }
 
         public ActionResult About()

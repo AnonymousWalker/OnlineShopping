@@ -14,9 +14,9 @@ namespace OnlineShopping.Models
         // If you wish to target a different database and/or database provider, modify the 'OnlineShoppingDbContext' 
         // connection string in the application configuration file.
         public OnlineShoppingDbContext()
-            : base("name=OnlineShopping")
+            : base("name=OnlineShoppingDbContext")
         {
-
+            Database.SetInitializer<DatabaseContext>(new CreateDatabaseIfNotExists<DatabaseContext>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
