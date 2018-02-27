@@ -16,6 +16,11 @@ namespace OnlineShopping.Controllers
         public HomeController(ControllerService service)
         {
             _service = service;
+            //using (var context = new OnlineShoppingDbContext())
+            //{
+            //    context.Products.Add(new Product { ProductName = "USB 3.0 Kingston 32GB", Price = 5.0, Description = "Fast drive storage", DateCreated = DateTime.Now.Date });
+            //    context.SaveChanges();
+            //}
         }
         public HomeController()
         {

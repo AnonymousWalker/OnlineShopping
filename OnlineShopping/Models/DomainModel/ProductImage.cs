@@ -10,7 +10,9 @@ namespace OnlineShopping.Models.DomainModel
     {
         [Key]
         public int ImageId { get; set; }
+        [Required]
         public string ImageName { get; set; }
+        [Required]
         public byte[] Content { get; set; }
         public ImageType Type { get; set; }
         public int ProductId { get; set; }

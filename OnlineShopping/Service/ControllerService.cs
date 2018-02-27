@@ -1,4 +1,5 @@
 ﻿using OnlineShopping.Models;
+using OnlineShopping.Models.DomainModel;
 using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,27 @@ namespace OnlineShopping.Service
                 Price = product.Price,
                 Description = product.Description
             };
+        }
+
+        public void UploadProduct(UploadProductModel model)
+        {
+            //add image to collection property of product
+            var product = new Product
+            {
+                ProductName = model.ProductName,
+                Price = model.Price,
+                Description = model.Description,
+                DateCreated = DateTime.Today,
+                 
+            };
+            Db.Products.Add(product);
+            var image = new ProductImage
+            {
+                ImageName = model.ImageName,
+                Content = model.Content,
+                Product = product
+            };
+            Db.Images.Add(image);
         }
     }
 }

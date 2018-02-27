@@ -11,6 +11,7 @@ namespace OnlineShopping.Models.DomainModel
         public int ProductId { get; set; }
         [StringLength(50)][Required]
         public string ProductName { get; set; }
+        [Required]
         public double Price { get; set; }
         [StringLength(150)]
         public string Description { get; set; }
