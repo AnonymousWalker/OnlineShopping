@@ -15,8 +15,6 @@ namespace OnlineShopping.Models.DomainModel
         public ImageType Type { get; set; }
         public int ProductId { get; set; }
         [StringLength(50)]
-        public string Description { get; set; }
-
         public virtual Product Product { get; set; }
     }
 }
