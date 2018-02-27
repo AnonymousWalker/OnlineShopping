@@ -12,7 +12,7 @@ namespace OnlineShopping.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(OnlineShopping.Models.OnlineShoppingDbContext context)
+        protected override void Seed(Models.OnlineShoppingDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

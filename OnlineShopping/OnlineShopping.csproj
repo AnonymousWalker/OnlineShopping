@@ -190,7 +190,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\FileTypeEnum.cs" />
     <Compile Include="Models\DomainModel\Product.cs" />
     <Compile Include="Models\DomainModel\ProductImage.cs" />
