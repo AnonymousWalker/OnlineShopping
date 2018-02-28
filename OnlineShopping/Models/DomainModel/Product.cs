@@ -9,14 +9,12 @@ namespace OnlineShopping.Models.DomainModel
     public class Product
     {
         public int ProductId { get; set; }
-        [StringLength(50)][Required]
+        [Required]
         public string ProductName { get; set; }
         [Required]
         public double Price { get; set; }
-        [StringLength(150)]
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
-
         public virtual ICollection<ProductImage> Images { get; set; }
     }
 }

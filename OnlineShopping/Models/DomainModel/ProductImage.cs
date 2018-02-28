@@ -14,9 +14,8 @@ namespace OnlineShopping.Models.DomainModel
         public string ImageName { get; set; }
         [Required]
         public byte[] Content { get; set; }
-        public ImageType Type { get; set; }
+        public int Type { get; set; } = (int)ImageType.ProductAvatar;
         public int ProductId { get; set; }
-        [StringLength(50)]
         public virtual Product Product { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace OnlineShopping.Models
         [Required]
         public string ProductName { get; set; }
         [Required]
-        public double Price { get; set; }
+        public string Price { get; set; }
         public string Description { get; set; }
         [Required]
         public string ImageName { get; set; }

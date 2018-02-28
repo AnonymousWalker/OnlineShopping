@@ -43,23 +43,24 @@ namespace OnlineShopping.Service
 
         public void UploadProduct(UploadProductModel model)
         {
-            //add image to collection property of product
             var product = new Product
             {
                 ProductName = model.ProductName,
-                Price = model.Price,
+                Price = Double.Parse(model.Price),
                 Description = model.Description,
                 DateCreated = DateTime.Today,
-                 
             };
-            Db.Products.Add(product);
+            product.Images = new List<ProductImage>();
+
             var image = new ProductImage
             {
                 ImageName = model.ImageName,
                 Content = model.Content,
-                Product = product
+                Type = (int)model.Type
             };
-            Db.Images.Add(image);
+            product.Images.Add(image);
+            Db.Products.Add(product);
+            Db.SaveChanges();
         }
     }
 }
