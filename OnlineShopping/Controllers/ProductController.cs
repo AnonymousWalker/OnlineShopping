@@ -34,14 +34,18 @@ namespace OnlineShopping.Controllers
         [HttpPost]
         public ActionResult UploadProduct(UploadProductModel model, HttpPostedFileBase image =null)
         {
-            if (model != null && image != null) //get uploaded image
+            if (ModelState.IsValid && model != null && image != null) //get uploaded image
             {
                 model.ImageName = image.FileName;
                 model.Content = new byte[image.ContentLength];
                 image.InputStream.Read(model.Content, 0, image.ContentLength);
                 _service.UploadProduct(model);
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index","Home");
+            else
+            {
+                return View();
+            }
         }
 
     }

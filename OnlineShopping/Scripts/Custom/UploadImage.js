@@ -12,7 +12,9 @@
                 $('#image')
                     .attr('src', e.target.result);
             };
-            $(".image-preview-filename").val(input.files[0].name);
+            $("#imagefilename").val(input.files[0].name);
+            $("#imagefilename").text(input.files[0].name);
+            //$("#imagefilename").attr('text', input.files[0].name);
             reader.readAsDataURL(input.files[0]);
         }
     }
