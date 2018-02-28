@@ -22,8 +22,8 @@ namespace OnlineShopping.Controllers
 
         public ActionResult ProductInformation(int id)   //database
         {
-            _service.GetProductInfo(id);
-            return View();
+            var productInfo = _service.GetProductInfo(id);
+            return View(productInfo);
         }
 
         public ActionResult UploadProduct()

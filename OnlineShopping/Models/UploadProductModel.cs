@@ -8,12 +8,12 @@ namespace OnlineShopping.Models
 {
     public class UploadProductModel
     {
-        [Required]
+        [Required(ErrorMessage = "Product name is required")]
         public string ProductName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Price is required")]
         public string Price { get; set; }
         public string Description { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Image is required")]
         public string ImageName { get; set; }
         public byte[] Content { get; set; }
         public ImageType Type { get; set; } = ImageType.ProductAvatar;

@@ -1,0 +1,16 @@
+﻿#image {
+    max-height: 300px;
+    max-width: 300px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.media-group {
+    width: 50%;
+    float: left;
+}
+
+#generalinfo {
+    float: left;
+}
+

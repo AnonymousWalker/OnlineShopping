@@ -2,25 +2,14 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@Styles.Render("~/Content/Custom/product-thumbnail.css")
 
 <div class="jumbotron">
-    <a href="@Url.Action("ProductInformation","Product")">This area for prominent item (picture link)</a>
+    <img src="http://www.mediasuperstore.com/image/cache/data/slideshow/electronics_sale_banner-980x280.jpg" />
 </div>
 <div class="row">
     @foreach (var product in Model)
     {
-        <div class="col-md-3">
-            <h4>@Html.ActionLink(product.ProductName, "ProductInformation","Product", new { id = product.ProductId }, null)</h4>
-            <p>@product.Description</p>
-        </div>
-        @*<div class="col-md-3">
-                Item 2
-            </div>
-            <div class="col-md-3">
-                Item 3
-            </div>
-            <div class="col-md-3">
-                Item 4
-            </div>*@
+        @Html.Partial("_ProductThumbnail", product);
     }
 </div>

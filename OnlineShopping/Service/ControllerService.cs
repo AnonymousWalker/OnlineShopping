@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace OnlineShopping.Service
 {
@@ -18,26 +19,40 @@ namespace OnlineShopping.Service
 
         public List<ProductViewModel> GetProducts()
         {
-            var products = Db.Products.Select(x => new ProductViewModel
+            var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
             {
                 ProductId = x.ProductId,
                 ProductName = x.ProductName,
                 Price = x.Price,
                 DateCreated = x.DateCreated,
-                Description = x.Description
+                Description = x.Description,
+                Image = x.Images.FirstOrDefault()
             }).ToList();
+            foreach (var item in products)
+            {
+                item.ImageSource = MapImageModel(item.Image);
+            }
             return products;
         }
 
         public ProductViewModel GetProductInfo(int id)
         {
             var product = Db.Products.Find(id);
+            var image = product.Images.FirstOrDefault();
+            string imagesrc = "";
+            if (image != null)
+            {
+                var base64img = Convert.ToBase64String(image.Content);
+                imagesrc = string.Format("data:image/jpg;base64,{0}", base64img);
+            }
             return new ProductViewModel
             {
-                ProductName = product.ProductName,
                 ProductId = product.ProductId,
+                ProductName = product.ProductName,
                 Price = product.Price,
-                Description = product.Description
+                Description = product.Description,
+                DateCreated = product.DateCreated,
+                ImageSource = imagesrc
             };
         }
 
@@ -61,6 +76,17 @@ namespace OnlineShopping.Service
             product.Images.Add(image);
             Db.Products.Add(product);
             Db.SaveChanges();
+        }
+
+        private string MapImageModel(ProductImage image)
+        {
+            string imagesrc = "";
+            if (image != null)
+            {
+                var base64img = Convert.ToBase64String(image.Content);
+                imagesrc = string.Format("data:image/jpg;base64,{0}", base64img);
+            }
+            return imagesrc;
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿@model ProductViewModel
+
+<div class="col-md-3">
+    <div class="thumbnail-area">
+        <h4>@Html.ActionLink(Model.ProductName, "ProductInformation", "Product", new { id = Model.ProductId }, null)</h4>
+        <a href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">
+            <img class="thumbnailImg" src="@Model.ImageSource" />
+        </a>
+        <a class="btn btn-primary" href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">$ @Html.DisplayFor(x => x.Price)</a>
+    </div>
+</div>
