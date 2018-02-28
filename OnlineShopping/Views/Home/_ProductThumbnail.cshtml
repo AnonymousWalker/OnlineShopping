@@ -6,6 +6,7 @@
         <a href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">
             <img class="thumbnailImg" src="@Model.ImageSource" />
         </a>
-        <a class="btn btn-primary" href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">$ @Html.DisplayFor(x => x.Price)</a>
+        <a class="btn btn-lg" href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">$ @Html.DisplayFor(x => x.Price)</a>
+        <button class="btn btn-toolbar">Add to cart <i class="fa fa-cart-arrow-down"></i></button>
     </div>
 </div>
