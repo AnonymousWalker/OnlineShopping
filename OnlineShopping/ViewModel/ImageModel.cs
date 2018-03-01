@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShopping.Models;
+using System;
 using System.Collections.Generic;
 
 
@@ -9,6 +10,6 @@ namespace OnlineShopping.ViewModel
         public int ImageId { get; set; }
         public string ImageName { get; set; }
         public string ImageSource { get; set; }
-        public int Type { get; set; } = (int)Models.ImageType.ProductAvatar;
+        public ImageType Type { get; set; } = ImageType.Avatar;
     }
 }

@@ -2,7 +2,7 @@
 
 <div class="col-md-3">
     <div class="thumbnail-area">
-        <h4>@Html.ActionLink(Model.ProductName, "ProductInformation", "Product", new { id = Model.ProductId }, null)</h4>
+        <h4>@Html.ActionLink(Model.ProductName, "ProductInformation", "Product", new { id = Model.ProductId}, new { @class = "btn btn-lg btn-block" })</h4>
         <a href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">
             <img class="thumbnailImg" src="@Model.ImageSource" />
         </a>

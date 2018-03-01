@@ -1,3 +1,4 @@
+- Categorize products into != kind: >> one more field needed in database
 - Product info with more text + format (bullets index)
 - Update (modify) the existing product: edit via product info view
 - Remove product from view (disable/out of stock) & Delete from database
@@ -8,8 +9,6 @@
 
 - Search nav bar: display result in view page like Home
 
-
-- Categorize products into != kind: >> one more field needed in database
 - Server side pagination (Home + Each category)
 
 

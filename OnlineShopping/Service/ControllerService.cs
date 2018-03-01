@@ -71,7 +71,7 @@ namespace OnlineShopping.Service
             {
                 ImageName = model.ImageName,
                 Content = model.Content,
-                Type = (int)model.Type
+                Type = model.Type
             };
             product.Images.Add(image);
             Db.Products.Add(product);
