@@ -8,13 +8,20 @@
 </div>
 <div name="productInfo" class="container">
     <div class="panel panel-default">
-        <div class="panel-body">
-            <div name="productheader" class="row">
-                <div class="col-md-10"><h3>ProductName</h3></div>
-                <div class="col-md-2">
+        <div class="panel-heading">
+            <div name="header" class="row">
+                <div class="col-md-9"><h3>ProductName</h3></div>
+                <div id="product-header-right" class="col-md-3">
                     <span class="btn btn-link" style="position:relative">
                         <i class="fa fa-heart-o" style="font-size:18px;color:red"></i>
                         Add to wishlist
+                    </span>
+                    <span>
+                        @*<a class="btn btn-default" href="@Url.Action("EditProduct","Product")" , data-toggle="modal" data-target="#editmodal">
+                                <i class="fa fa-edit"></i>
+                            </a>*@
+                        @Html.Partial("_EditProductModal", Model)
+                        @Html.Partial("_ConfirmDeleteModal", new ConfirmActionModel {ID= Model.ProductId, Name = Model.ProductName, Url = Url.Action("DeleteProduct","Product")})
                     </span>
                 </div>
             </div>
@@ -30,7 +37,7 @@
                     @Model.Description
                 </div>
                 <div id="button-area">
-                    <h4>$ @Html.DisplayFor(x=>x.Price)</h4>
+                    <h4>$ @Html.DisplayFor(x => x.Price)</h4>
                     <button id="buynowbtn" type="button" class="btn btn-lg btn-danger">Buy Now</button>
                 </div>
             </div>

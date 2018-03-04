@@ -14,3 +14,7 @@
     float: left;
 }
 
+#product-header-right > span
+{
+    vertical-align: central;
+}

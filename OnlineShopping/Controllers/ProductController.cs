@@ -1,5 +1,6 @@
 ﻿using OnlineShopping.Models;
 using OnlineShopping.Service;
+using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,32 @@ namespace OnlineShopping.Controllers
     public class ProductController : Controller
     {
         private ControllerService _service;
-        public ProductController(ControllerService service)
+        private OnlineShoppingDbContext Db;
+        public ProductController(ControllerService service,OnlineShoppingDbContext dbcontext)
         {
+            Db = dbcontext;
             _service = service;
         }
         public ActionResult Index()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult EditProduct(ProductViewModel model)
+        {
+
+            return RedirectToAction("ProductInformation", "Product", new { id = model.ProductId });
+        }
+
+        public ActionResult DeleteProduct(int? id)
+        {
+            if (id != null)
+            {
+                var product = Db.Products.Find(id);
+                Db.Products.Remove(product);
+                Db.SaveChanges();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ProductInformation(int id)   //database
