@@ -1,24 +1,34 @@
-﻿@model ProductViewModel
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal"><i class="fa fa-edit"></i></button>
+﻿@model EditProductViewModel
+
 <div  id="editmodal" class="modal fade" role="dialog">
-    @Html.BeginForm("EditProduct", "Product")
+    @Html.BeginForm("EditProduct", "Product", FormMethod.Post)
     {
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Edit product info</h4>
             </div>
 
             <div class="modal-body">
-
-                <div class="form-group">
-                    
+                @Html.HiddenFor(x=>x.ProductId)
+                <div class="form-group form-inline">
+                    <label>Name: </label>
+                    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ProductName)
+                </div>
+                <div class="form-group form-inline">
+                    <label>Price: </label>
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price)
+                </div>
+                <div class="form-group form-inline">
+                    <label>Description: </label>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description)
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

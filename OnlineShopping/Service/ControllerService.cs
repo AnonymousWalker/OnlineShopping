@@ -49,6 +49,7 @@ namespace OnlineShopping.Service
             {
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
+                Category = product.Category,
                 Price = product.Price,
                 Description = product.Description,
                 DateCreated = product.DateCreated,

@@ -22,10 +22,36 @@ namespace OnlineShopping.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult EditProduct(ProductViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var product = Db.Products.Find(model.ProductId);
+                var name = product.ProductName;
+                var price = product.Price;
+                var description = product.Description;
+                bool isChanged = false;
+                if (!name.Equals(model.ProductName))
+                {
+                    product.ProductName = model.ProductName;
+                    isChanged = true;
+                }
 
+                if (!price.Equals(model.Price))
+                {
+                    product.Price = model.Price;
+                    isChanged = true;
+                }
+
+                if (!description.Equals(model.Description))
+                {
+                    product.Description = model.Description;
+                    isChanged = true;
+                }
+                if (isChanged) Db.SaveChanges();
+            }
             return RedirectToAction("ProductInformation", "Product", new { id = model.ProductId });
         }
 
