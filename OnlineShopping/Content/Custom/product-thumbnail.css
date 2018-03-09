@@ -31,3 +31,7 @@
     font-size: 18px;
     width:100%;
 }
+
+.btn-block {
+    white-space: normal !important;
+}

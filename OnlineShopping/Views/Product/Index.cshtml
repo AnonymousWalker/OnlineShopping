@@ -19,11 +19,8 @@
                         Add to wishlist
                     </span>
                     <span>
-                        @*<a class="btn btn-default" href="@Url.Action("EditProduct","Product")" , data-toggle="modal" data-target="#editmodal">
-                                <i class="fa fa-edit"></i>
-                            </a>*@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal"><i class="fa fa-edit"></i></button>
-                        @Html.Partial("_EditProductModal", new EditProductViewModel { ProductId = Model.ProductId, ProductName = Model.ProductName, Price = Model.Price, Description = Model.Description })
+                        @Html.Partial("_EditProductModal", new EditProductViewModel { ProductId = Model.ProductId, ProductName = Model.ProductName, Price = Model.Price, SalePrice = Model.SalePrice, Description = Model.Description })
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confirmmodal"><i class="fa fa-trash"></i></button>
                         @Html.Partial("_ConfirmDeleteModal", new ConfirmActionModel { ID = Model.ProductId, Name = Model.ProductName, Url = Url.Action("DeleteProduct", "Product") })
                     </span>
@@ -44,11 +41,11 @@
                     @if (Model.SalePrice > 0)
                     {
                         <h4>$ <strike>@Html.DisplayFor(x => x.Price)</strike></h4>
-                        <h3>$ @Html.DisplayFor(x=>x.SalePrice)</h3>
+                        <h3>$ @Html.DisplayFor(x => x.SalePrice)</h3>
                     }
                     else
                     {
-                        <h4>$ @Html.DisplayFor(x=>x.Price) </h4>
+                        <h4>$ @Html.DisplayFor(x => x.Price) </h4>
                     }
                     <button id="buynowbtn" type="button" class="btn btn-lg btn-danger">Buy Now</button>
                 </div>

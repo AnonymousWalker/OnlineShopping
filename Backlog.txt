@@ -1,5 +1,7 @@
-- Categorize products into != kind: >> one more field needed in database => editable
-- Product info with more text + format (bullets index)
+
+- Product info with more text + format (bullets index): store as json/xml in db (plaintext); 
+get input separated with /n /r... handles the input on server 
+
 - Update (modify) the existing product: edit via product info view
 - Remove product from view (disable/out of stock) & Delete from database
 - Insert more images for each product: on update and on edit
