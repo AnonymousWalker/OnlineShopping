@@ -1,6 +1,6 @@
 ﻿@model EditProductViewModel
 
-<div  id="editmodal" class="modal fade" role="dialog">
+<div id="editmodal" class="modal fade" role="dialog">
     @Html.BeginForm("EditProduct", "Product", FormMethod.Post)
     {
     <div class="modal-dialog">
@@ -11,21 +11,25 @@
             </div>
 
             <div class="modal-body">
-                @Html.HiddenFor(x=>x.ProductId)
-                <div class="form-group form-inline">
-                    <label>Name: </label>
-                    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.ProductName)
+                @Html.HiddenFor(x => x.ProductId)
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ProductName)
+                    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control"})
+                    @*@Html.ValidationMessageFor(x => x.ProductName, "", new { @class = "text-danger" })*@
                 </div>
-                <div class="form-group form-inline">
-                    <label>Price: </label>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Price)
                     @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Price)
                 </div>
-                <div class="form-group form-inline">
-                    <label>Description: </label>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.SalePrice)
+                    @Html.TextBoxFor(x => x.SalePrice, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.SalePrice)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Description)
                     @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Description)
                 </div>
             </div>
 

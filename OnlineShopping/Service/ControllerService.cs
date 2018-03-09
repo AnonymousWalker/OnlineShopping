@@ -51,6 +51,7 @@ namespace OnlineShopping.Service
                 ProductName = product.ProductName,
                 Category = product.Category,
                 Price = product.Price,
+                SalePrice = product.SalePrice,
                 Description = product.Description,
                 DateCreated = product.DateCreated,
                 ImageSource = imagesrc

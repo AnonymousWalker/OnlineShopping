@@ -7,14 +7,26 @@
 
 .media-group {
     width: 50%;
+    min-width: 350px; 
     float: left;
 }
 
 #generalinfo {
     float: left;
+    min-width: 300px;
 }
 
 #product-header-right > span
 {
     vertical-align: central;
 }
+
+.form-control{
+    display: block;
+    width: 100%;
+}
+
+.form-group {
+    margin-left: 15px;
+}
+

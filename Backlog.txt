@@ -1,4 +1,4 @@
-- Categorize products into != kind: >> one more field needed in database
+- Categorize products into != kind: >> one more field needed in database => editable
 - Product info with more text + format (bullets index)
 - Update (modify) the existing product: edit via product info view
 - Remove product from view (disable/out of stock) & Delete from database

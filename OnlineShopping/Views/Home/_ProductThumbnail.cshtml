@@ -2,20 +2,30 @@
 
 <div class="col-md-3">
     <div class="thumbnail">
-        <h4>@Html.ActionLink(Model.ProductName, "ProductInformation", "Product", new { id = Model.ProductId }, new { @class = "btn btn-lg btn-block" })</h4>
+        <h4>@Html.ActionLink(Model.ProductName, "Index", "Product", new { id = Model.ProductId }, new { @class = "btn btn-lg btn-block" })</h4>
         <div class="square">
-            <a class="thumbnail-link" href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">
+            <a class="thumbnail-link" href="@Url.Action("Index","Product", new { id = Model.ProductId })">
                 <img class="thumbnailImg" src="@Model.ImageSource" />
             </a>
         </div>
-        
-            <div class="row inputgroup">
-                <div class="col-md-8" style="text-align:center">
-                    <a id="pricetag" class="btn btn-toolbar" href="@Url.Action("ProductInformation","Product", new { id = Model.ProductId })">$ @Html.DisplayFor(x => x.Price)</a>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-warning">+ <i class="fa fa-cart-arrow-down"></i></button>
-                </div>
+
+        <div class="row inputgroup">
+            <div class="col-md-8" style="text-align:center">
+                <a id="pricetag" class="btn btn-toolbar" href="@Url.Action("Index","Product", new { id = Model.ProductId })">
+                    @if (Model.SalePrice > 0)
+                    {
+                        <strike>@("$ " + Html.DisplayFor(x => x.Price))</strike>
+                        @("$ " + Html.DisplayFor(x => x.SalePrice))
+                    }
+                    else
+                    {
+                        @("$ " + Html.DisplayFor(x => x.Price))
+                    }
+                </a>
             </div>
+            <div class="col-md-2">
+                <button class="btn btn-warning">+ <i class="fa fa-cart-arrow-down"></i></button>
+            </div>
+        </div>
     </div>
 </div>
