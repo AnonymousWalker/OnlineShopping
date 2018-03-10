@@ -1,4 +1,4 @@
-- Categorize products into != kind: >> one more field needed in database
+- Categorize products into != kind: >> one more field needed in database => editable
 - Product info with more text + format (bullets index)
 
 - Insert more images for each product: on update and on edit

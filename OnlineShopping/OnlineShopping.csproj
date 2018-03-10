@@ -277,7 +277,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Product\ProductInformation.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\UploadProduct.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />

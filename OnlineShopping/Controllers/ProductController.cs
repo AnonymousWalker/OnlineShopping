@@ -18,9 +18,10 @@ namespace OnlineShopping.Controllers
             Db = dbcontext;
             _service = service;
         }
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var productInfo = _service.GetProductInfo(id);
+            return View(productInfo);
         }
 
         [HttpPost]
@@ -31,6 +32,7 @@ namespace OnlineShopping.Controllers
                 var product = Db.Products.Find(model.ProductId);
                 var name = product.ProductName;
                 var price = product.Price;
+                var sale = product.SalePrice;
                 var description = product.Description;
                 bool isChanged = false;
                 if (!name.Equals(model.ProductName))
@@ -45,14 +47,22 @@ namespace OnlineShopping.Controllers
                     isChanged = true;
                 }
 
+                if (!sale.Equals(model.SalePrice))
+                {
+                    product.SalePrice = model.SalePrice;
+                    isChanged = true;
+                }
+
                 if (!description.Equals(model.Description))
                 {
                     product.Description = model.Description;
                     isChanged = true;
                 }
+
+
                 if (isChanged) Db.SaveChanges();
             }
-            return RedirectToAction("ProductInformation", "Product", new { id = model.ProductId });
+            return RedirectToAction("Index", "Product", new { id = model.ProductId });
         }
 
         public ActionResult DeleteProduct(int? id)
@@ -66,11 +76,7 @@ namespace OnlineShopping.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult ProductInformation(int id)   //database
-        {
-            var productInfo = _service.GetProductInfo(id);
-            return View(productInfo);
-        }
+
 
         public ActionResult UploadProduct()
         {

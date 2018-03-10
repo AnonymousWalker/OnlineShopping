@@ -41,7 +41,15 @@
                     @Model.Description
                 </div>
                 <div id="button-area">
-                    <h4>$ @Html.DisplayFor(x => x.Price)</h4>
+                    @if (Model.SalePrice > 0)
+                    {
+                        <h4>$ <strike>@Html.DisplayFor(x => x.Price)</strike></h4>
+                        <h3>$ @Html.DisplayFor(x=>x.SalePrice)</h3>
+                    }
+                    else
+                    {
+                        <h4>$ @Html.DisplayFor(x=>x.Price) </h4>
+                    }
                     <button id="buynowbtn" type="button" class="btn btn-lg btn-danger">Buy Now</button>
                 </div>
             </div>
