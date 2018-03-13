@@ -23,6 +23,13 @@ namespace OnlineShopping.Controllers
             var productInfo = _service.GetProductInfo(id);
             return View(productInfo);
         }
+            
+        public ActionResult Category(int type)
+        {
+            //get from db with specific type
+            var model = _service.GetProductsByCategory(type);
+            return View("ProductsWithCategory",model);
+        }
 
         [HttpPost]
         public ActionResult EditProduct(ProductViewModel model)

@@ -23,9 +23,23 @@
                                 <i class="fa fa-edit"></i>
                             </a>*@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal"><i class="fa fa-edit"></i></button>
-                        @Html.Partial("_EditProductModal", new EditProductViewModel { ProductId = Model.ProductId, ProductName = Model.ProductName, Price = Model.Price, Description = Model.Description })
+                        @Html.Partial("_EditProductModal",
+                            new EditProductViewModel
+                            {
+                                ProductId = Model.ProductId,
+                                ProductName = Model.ProductName,
+                                Price = Model.Price,
+                                SalePrice = Model.SalePrice,
+                                Description = Model.Description
+                            })
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confirmmodal"><i class="fa fa-trash"></i></button>
-                        @Html.Partial("_ConfirmDeleteModal", new ConfirmActionModel { ID = Model.ProductId, Name = Model.ProductName, Url = Url.Action("DeleteProduct", "Product") })
+                        @Html.Partial("_ConfirmDeleteModal",
+                            new ConfirmActionModel
+                            {
+                                ID = Model.ProductId,
+                                Name = Model.ProductName,
+                                Url = Url.Action("DeleteProduct", "Product")
+                            })
                     </span>
                 </div>
             </div>

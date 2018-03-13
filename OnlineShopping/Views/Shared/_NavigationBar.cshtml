@@ -1,0 +1,44 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Quick Shopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a class="dropdown-toggle" href="#dropdown" data-toggle="dropdown">All Categories</a>
+                    <div id="dropdown" class="dropdown">
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Mouse", "Category", "Product", new { type = (int)Category.Mouse }, null)</li>
+                            <li>@Html.ActionLink("Keyboard", "Category", "Product", new { type = (int)Category.Keyboard }, null)</li>
+                            <li>@Html.ActionLink("External Storage", "Category", "Product", new { type = (int)Category.ExternalStorage }, null)</li>
+                            <li>@Html.ActionLink("USB", "Category", "Product", new { type = (int)Category.USB }, null)</li>
+                            <li>@Html.ActionLink("RAM", "Category", "Product", new { type = (int)Category.RAM }, null)</li>
+                            <li>@Html.ActionLink("HDD", "Category", "Product", new { type = (int)Category.HDD }, null)</li>
+                            <li>@Html.ActionLink("SSD", "Category", "Product", new { type = (int)Category.SSD }, null)</li>
+                            <li>@Html.ActionLink("CPU", "Category", "Product", new { type = (int)Category.CPU }, null)</li>
+                            <li>@Html.ActionLink("Laptop", "Category", "Product", new { type = (int)Category.Laptop }, null)</li>
+                            <li>@Html.ActionLink("Graphic Card", "Category", "Product", new { type = (int)Category.GraphicCard }, null)</li>
+                            <li>@Html.ActionLink("Software", "Category", "Product", new { type = (int)Category.Software }, null)</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Sales</a></li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <ul id="navbar-right" class="nav navbar-nav navbar-right">
+                <li><a href=""><i class="glyphicon glyphicon-search"></i></a></li>
+                <li><a href=""><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                <li><a id="uploadlink" href="@Url.Action("UploadProduct","Product")">Upload <i class="glyphicon glyphicon-upload"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

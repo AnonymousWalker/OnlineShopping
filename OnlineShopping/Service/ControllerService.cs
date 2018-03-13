@@ -17,7 +17,7 @@ namespace OnlineShopping.Service
             Db = db;
         }
 
-        public List<ProductViewModel> GetProducts()
+        public IList<ProductViewModel> GetProducts()
         {
             var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
             {
@@ -33,6 +33,21 @@ namespace OnlineShopping.Service
                 item.ImageSource = MapImageModel(item.Image);
             }
             return products;
+        }
+
+        public IList<ProductViewModel> GetProductsByCategory(int type)
+        {   // should we map the entity to model before ToList or after?
+            var listproducts = Db.Products.Where(p => p.Category == (Category)type).Include(p => p.Images)
+                .Select(p => new ProductViewModel
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    DateCreated = p.DateCreated,
+                    Description = p.Description,
+                    Image = p.Images.FirstOrDefault()
+                }).ToList();
+            return listproducts;
         }
 
         public ProductViewModel GetProductInfo(int id)
