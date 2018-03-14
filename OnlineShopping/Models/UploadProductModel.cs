@@ -13,7 +13,7 @@ namespace OnlineShopping.Models
 
         [Required(ErrorMessage = "Category is required")]
         [Range(1,short.MaxValue,ErrorMessage ="Category is not selected or unavailable")]
-        public Category Category { get; set; }
+        public ProductCategoryEnum Category { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
         public string Price { get; set; }

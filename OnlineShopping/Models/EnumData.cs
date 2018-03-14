@@ -10,7 +10,7 @@ namespace OnlineShopping.Models
         Avatar = 1,
     }
 
-    public enum Category
+    public enum ProductCategoryEnum 
     {
         Software = 1,
         USB,

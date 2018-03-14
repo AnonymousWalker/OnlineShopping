@@ -11,7 +11,7 @@ namespace OnlineShopping.Models.DomainModel
         public int ProductId { get; set; }
         [Required]
         public string ProductName { get; set; }
-        public Category Category { get; set; }
+        public ProductCategoryEnum Category { get; set; }
         [Required]
         public double Price { get; set; }
         public double SalePrice { get; set; }

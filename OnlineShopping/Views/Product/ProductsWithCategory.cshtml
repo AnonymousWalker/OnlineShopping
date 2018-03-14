@@ -1,0 +1,15 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewBag.Title = "ProductsWithCategory";
+}
+<div>
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink("Home","Index","Home")</li>
+        <li>Category</li>
+        <li>
+            @Html.ActionLink("type","Category","Product", new { type = ViewBag.CategoryNumber },null)
+        </li>
+    </ul>
+</div>
+<h2>ProductsWithCategory</h2>
+
