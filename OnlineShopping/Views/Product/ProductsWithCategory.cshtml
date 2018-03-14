@@ -2,14 +2,26 @@
 @{
     ViewBag.Title = "ProductsWithCategory";
 }
+@Styles.Render("~/Content/Custom/product-thumbnail.css")
+
 <div>
     <ul class="breadcrumb">
-        <li>@Html.ActionLink("Home","Index","Home")</li>
-        <li>Category</li>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>All Categories</li>
         <li>
-            @Html.ActionLink(Model.Category.ToString(),"Category","Product", new { type = (int)Model.Category },null)
+            @Html.ActionLink(Model.Category.ToString(), "Category", "Product", new { type = (int)Model.Category }, null)
         </li>
     </ul>
 </div>
-<h2>ProductsWithCategory</h2>
+
+<h3>@Model.Category</h3>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            @Html.Partial("~/Views/Home/_ProductThumbnail.cshtml", product);
+        }
+    </div>
+</div>
 

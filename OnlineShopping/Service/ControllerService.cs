@@ -31,14 +31,14 @@ namespace OnlineShopping.Service
             }).ToList();
             foreach (var item in products)
             {
-                item.ImageSource = MapImageModel(item.Image);
+                item.ImageSource = MapToImageModel(item.Image);
             }
             return products;
         }
 
         public IList<ProductViewModel> GetProductsByCategory(int type)
         {   // should we map the entity to model before ToList or after?
-            var listproducts = Db.Products.Where(p => p.Category == (ProductCategoryEnum)type).Include(p => p.Images)
+            var listproducts = Db.Products.Include(p => p.Images).Where(p => p.Category == (ProductCategoryEnum)type)
                 .Select(p => new ProductViewModel
                 {
                     ProductId = p.ProductId,
@@ -48,6 +48,10 @@ namespace OnlineShopping.Service
                     Description = p.Description,
                     Image = p.Images.FirstOrDefault()
                 }).ToList();
+            foreach (var item in listproducts)
+            {
+                item.ImageSource = MapToImageModel(item.Image);
+            }
             return listproducts;
         }
 
@@ -80,6 +84,7 @@ namespace OnlineShopping.Service
             {
                 ProductName = model.ProductName,
                 Price = Double.Parse(model.Price),
+                Category = model.Category,
                 Description = model.Description,
                 DateCreated = DateTime.Today,
             };
@@ -96,7 +101,7 @@ namespace OnlineShopping.Service
             Db.SaveChanges();
         }
 
-        private string MapImageModel(ProductImage image)
+        private string MapToImageModel(ProductImage image)
         {
             string imagesrc = "";
             if (image != null)

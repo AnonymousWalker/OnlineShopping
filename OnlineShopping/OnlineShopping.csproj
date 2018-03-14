@@ -294,6 +294,7 @@
     <Content Include="Views\Product\_ConfirmDeleteModal.cshtml" />
     <Content Include="Views\Shared\_NavigationBar.cshtml" />
     <Content Include="Views\Product\ProductsWithCategory.cshtml" />
+    <Content Include="Views\Shared\_Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
