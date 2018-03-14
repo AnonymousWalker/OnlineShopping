@@ -213,6 +213,13 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Custom\navbarcustom.css" />
     <Content Include="Content\Custom\UploadProduct.css" />
+    <Content Include="Content\Picture\Asus Tranformation Flip.jpg" />
+    <Content Include="Content\Picture\B100.jpeg" />
+    <Content Include="Content\Picture\background.jpeg" />
+    <Content Include="Content\Picture\background1.jpeg" />
+    <Content Include="Content\Picture\Logitech Wireless M238.png" />
+    <Content Include="Content\Picture\macbook.jpg" />
+    <Content Include="Content\Picture\Razer.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -289,12 +296,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Home\_ProductThumbnail.cshtml" />
-    <Content Include="Views\Product\_EditProductModal.cshtml" />
-    <Content Include="Views\Product\_ConfirmDeleteModal.cshtml" />
+    <Content Include="Views\Home\Partial\_ProductThumbnail.cshtml" />
+    <Content Include="Views\Product\Partial\_EditProductModal.cshtml" />
+    <Content Include="Views\Product\Partial\_ConfirmDeleteModal.cshtml" />
     <Content Include="Views\Shared\_NavigationBar.cshtml" />
     <Content Include="Views\Product\ProductsWithCategory.cshtml" />
     <Content Include="Views\Shared\_Category.cshtml" />
+    <Content Include="Views\Product\Sales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

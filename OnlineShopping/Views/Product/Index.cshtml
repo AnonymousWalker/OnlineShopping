@@ -23,7 +23,7 @@
                                 <i class="fa fa-edit"></i>
                             </a>*@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal"><i class="fa fa-edit"></i></button>
-                        @Html.Partial("_EditProductModal",
+                        @Html.Partial("Partial/_EditProductModal",
                             new EditProductViewModel
                             {
                                 ProductId = Model.ProductId,
@@ -33,7 +33,7 @@
                                 Description = Model.Description
                             })
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confirmmodal"><i class="fa fa-trash"></i></button>
-                        @Html.Partial("_ConfirmDeleteModal",
+                        @Html.Partial("Partial/_ConfirmDeleteModal",
                             new ConfirmActionModel
                             {
                                 ID = Model.ProductId,

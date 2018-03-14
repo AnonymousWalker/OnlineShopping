@@ -1,0 +1,15 @@
+﻿@model IList<ProductViewModel>
+@{
+    ViewBag.Title = "Sales";
+}
+@Styles.Render("~/Content/Custom/product-thumbnail.css")
+
+<h3>Sales</h3>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        @Html.Partial("~/Views/Home/Partial/_ProductThumbnail.cshtml", product);
+    }
+</div>
+

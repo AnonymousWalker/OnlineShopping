@@ -89,7 +89,11 @@ namespace OnlineShopping.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        public ActionResult Sales()
+        {
+            var model = _service.GetSaleOffProducts();
+            return View(model);
+        }
 
         public ActionResult UploadProduct()
         {

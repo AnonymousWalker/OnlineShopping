@@ -17,6 +17,29 @@ namespace OnlineShopping.Service
             Db = db;
         }
 
+        public IList<ProductViewModel> GetSaleOffProducts()
+        {
+            var recently = DateTime.Now.AddDays(-10); // 10 days up to now
+            var products = Db.Products.Include(p => p.Images)
+                                    .Where(p => p.SalePrice != 0)
+                                    .Select(p => new ProductViewModel
+                                    {
+                                        ProductId = p.ProductId,
+                                        ProductName = p.ProductName,
+                                        Price = p.Price,
+                                        SalePrice = p.SalePrice,
+                                        DateCreated = p.DateCreated,
+                                        Description = p.Description,
+                                        Image = p.Images.FirstOrDefault()
+                                    }).ToList();
+
+            foreach (var item in products)
+            {
+                item.ImageSource = MapToImageModel(item.Image);
+            }
+            return products;
+        }
+
         public IList<ProductViewModel> GetProducts()
         {
             var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
@@ -29,6 +52,7 @@ namespace OnlineShopping.Service
                 Description = x.Description,
                 Image = x.Images.FirstOrDefault()
             }).ToList();
+
             foreach (var item in products)
             {
                 item.ImageSource = MapToImageModel(item.Image);
@@ -44,10 +68,12 @@ namespace OnlineShopping.Service
                     ProductId = p.ProductId,
                     ProductName = p.ProductName,
                     Price = p.Price,
+                    SalePrice = p.SalePrice,
                     DateCreated = p.DateCreated,
                     Description = p.Description,
                     Image = p.Images.FirstOrDefault()
                 }).ToList();
+
             foreach (var item in listproducts)
             {
                 item.ImageSource = MapToImageModel(item.Image);
