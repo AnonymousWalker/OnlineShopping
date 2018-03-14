@@ -1,5 +1,4 @@
-- Categorize products into != kind: >> one more field needed in database => editable
-- view for each category
+
 
 - Product info with more text + format (bullets index)
 
@@ -9,9 +8,9 @@
 -store cart data as cookie js
 - Modal Cash checkout (pop up)
 
--Apply categories for products + nav bar All Categories
+
 - Search nav bar: display result in view page like Home
 
 - Server side pagination (Home + Each category)
 
-
+- Should we join the two views: category vs sales into 1 ?

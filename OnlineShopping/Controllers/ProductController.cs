@@ -18,6 +18,7 @@ namespace OnlineShopping.Controllers
             Db = dbcontext;
             _service = service;
         }
+
         public ActionResult Index(int id)
         {
             var productInfo = _service.GetProductInfo(id);
@@ -26,7 +27,6 @@ namespace OnlineShopping.Controllers
             
         public ActionResult Category(int type)
         {
-            //get from db with specific type
             var products = _service.GetProductsByCategory(type);
             ViewBag.CategoryNumber = type;
             var model = new ProductWithCategoryViewModel

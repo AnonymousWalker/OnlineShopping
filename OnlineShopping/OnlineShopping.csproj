@@ -215,8 +215,8 @@
     <Content Include="Content\Custom\UploadProduct.css" />
     <Content Include="Content\Picture\Asus Tranformation Flip.jpg" />
     <Content Include="Content\Picture\B100.jpeg" />
+    <Content Include="Content\Picture\background-white.jpg" />
     <Content Include="Content\Picture\background.jpeg" />
-    <Content Include="Content\Picture\background1.jpeg" />
     <Content Include="Content\Picture\Logitech Wireless M238.png" />
     <Content Include="Content\Picture\macbook.jpg" />
     <Content Include="Content\Picture\Razer.jpg" />
