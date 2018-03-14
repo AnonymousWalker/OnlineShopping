@@ -1,4 +1,4 @@
-﻿@model List<ProductViewModel>
+﻿@model ProductWithCategoryViewModel
 @{
     ViewBag.Title = "ProductsWithCategory";
 }
@@ -7,7 +7,7 @@
         <li>@Html.ActionLink("Home","Index","Home")</li>
         <li>Category</li>
         <li>
-            @Html.ActionLink("type","Category","Product", new { type = ViewBag.CategoryNumber },null)
+            @Html.ActionLink(Model.Category.ToString(),"Category","Product", new { type = (int)Model.Category },null)
         </li>
     </ul>
 </div>

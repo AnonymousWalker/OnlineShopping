@@ -24,6 +24,7 @@ namespace OnlineShopping.Service
                 ProductId = x.ProductId,
                 ProductName = x.ProductName,
                 Price = x.Price,
+                SalePrice = x.SalePrice,
                 DateCreated = x.DateCreated,
                 Description = x.Description,
                 Image = x.Images.FirstOrDefault()

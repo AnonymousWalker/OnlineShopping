@@ -6,6 +6,7 @@
 - Insert more images for each product: on update and on edit
 
 - Cart: view page - Check out / Cash; add to cart
+-store cart data as cookie js
 - Modal Cash checkout (pop up)
 
 -Apply categories for products + nav bar All Categories

@@ -200,6 +200,7 @@
     <Compile Include="ViewModel\EditProductViewModel.cs" />
     <Compile Include="ViewModel\ImageModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductWithCategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
