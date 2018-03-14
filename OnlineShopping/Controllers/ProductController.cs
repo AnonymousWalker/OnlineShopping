@@ -28,6 +28,7 @@ namespace OnlineShopping.Controllers
         {
             //get from db with specific type
             var model = _service.GetProductsByCategory(type);
+            ViewBag.CategoryNumber = type;
             return View("ProductsWithCategory",model);
         }
 

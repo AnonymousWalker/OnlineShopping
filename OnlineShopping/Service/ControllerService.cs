@@ -37,7 +37,7 @@ namespace OnlineShopping.Service
 
         public IList<ProductViewModel> GetProductsByCategory(int type)
         {   // should we map the entity to model before ToList or after?
-            var listproducts = Db.Products.Where(p => p.Category == (Category)type).Include(p => p.Images)
+            var listproducts = Db.Products.Where(p => p.Category == (ProductCategoryEnum)type).Include(p => p.Images)
                 .Select(p => new ProductViewModel
                 {
                     ProductId = p.ProductId,
