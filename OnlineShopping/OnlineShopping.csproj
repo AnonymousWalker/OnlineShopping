@@ -183,6 +183,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Service\ControllerService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -230,6 +231,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\Cart.js" />
     <Content Include="Scripts\Custom\UploadFormValidation.js" />
     <Content Include="Scripts\Custom\UploadImage.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -303,6 +305,7 @@
     <Content Include="Views\Product\ProductsWithCategory.cshtml" />
     <Content Include="Views\Shared\_Category.cshtml" />
     <Content Include="Views\Product\Sales.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

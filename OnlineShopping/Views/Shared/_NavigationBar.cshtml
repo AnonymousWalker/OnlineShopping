@@ -19,7 +19,12 @@
             </ul>
             <ul id="navbar-right" class="nav navbar-nav navbar-right">
                 <li><a href=""><i class="glyphicon glyphicon-search"></i></a></li>
-                <li><a href=""><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                <li>
+                    <a href="@Url.Action("Index","Cart")">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <i>1</i>
+                    </a>
+                </li>
                 <li><a id="uploadlink" href="@Url.Action("UploadProduct","Product")">Upload <i class="glyphicon glyphicon-upload"></i></a></li>
             </ul>
         </div>

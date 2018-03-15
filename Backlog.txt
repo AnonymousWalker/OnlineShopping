@@ -1,11 +1,16 @@
 
 
-- Product info with more text + format (bullets index)
+- Product quantity remained!! For cart first then db
+
+- Product info with more text + format (bullets index): split the input with respect to /n/r, then
+convert to json or xml files (<p> ... <p>...)
 
 - Insert more images for each product: on update and on edit
 
 - Cart: view page - Check out / Cash; add to cart
--store cart data as cookie js
+-store cart data as cookie js 
+- Store cookie using server response (ajax)
+
 - Modal Cash checkout (pop up)
 
 
