@@ -40,7 +40,7 @@ namespace OnlineShopping.Service
             return products;
         }
 
-        public IList<ProductViewModel> GetProducts()
+        public IList<ProductViewModel> GetAllProducts()
         {
             var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
             {

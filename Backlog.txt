@@ -9,7 +9,9 @@ convert to json or xml files (<p> ... <p>...)
 - Insert more images for each product: on update and on edit
 
 - Cart: view page - Check out / Cash; add to cart
--store cart data as cookie js
+-store cart data as cookie js 
+- Store cookie using server response (ajax)
+
 - Modal Cash checkout (pop up)
 
 -Apply categories for products + nav bar All Categories

@@ -1,0 +1,33 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h3>Cart</h3>
+
+<div class="table">
+    <table class="table-hover">
+        <thead>
+            <tr>
+                <td id="countItems" style="width:200px">@Model.Count items</td>
+                <td id="name" style="width:400px"><b>ProductName</b></td>
+                <td style="width:150px"><b>Quantity</b></td>
+                <td style="width:200px"><b>Price</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td><span><i class="fa fa-remove"></i></span><img /></td>
+                    <td>@product.ProductName</td>
+                    <td>1</td>
+                    <td>@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <h4>Total: </h4>
+</div>

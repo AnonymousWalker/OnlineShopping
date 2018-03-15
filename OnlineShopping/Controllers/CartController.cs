@@ -1,4 +1,5 @@
 ﻿using OnlineShopping.Service;
+using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,25 @@ namespace OnlineShopping.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            var cookie = Request.Cookies.AllKeys;
+            if (cookie == null || !cookie.Any(x => x.Contains("product"))) return View("Cart", new List<ProductViewModel>());
+            List<int> productIds = new List<int>();
+            foreach (var key in cookie)
+            {
+                if (key.Contains("product"))
+                {
+                    var IdString = key.Remove(0, 7);
+                    var id = Int32.Parse(IdString);
+                    productIds.Add(id);
+                }
+            }
+            var items = new List<ProductViewModel>();
+            foreach (var id in productIds)
+            {
+                var product = _service.GetProductInfo(id);
+                items.Add(product);
+            }
+            return View("Cart", items);
         }
     }
 }

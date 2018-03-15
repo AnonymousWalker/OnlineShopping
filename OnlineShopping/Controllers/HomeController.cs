@@ -28,7 +28,7 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Index()
         {
-            var products = _service.GetProducts();
+            var products = _service.GetAllProducts();
             return View(products);
         }
 
