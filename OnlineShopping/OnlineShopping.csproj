@@ -183,6 +183,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Service\ControllerService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Views\Product\ProductsWithCategory.cshtml" />
     <Content Include="Views\Shared\_Category.cshtml" />
     <Content Include="Views\Product\Sales.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

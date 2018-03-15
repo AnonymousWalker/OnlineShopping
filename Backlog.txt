@@ -1,7 +1,10 @@
 - Categorize products into != kind: >> one more field needed in database => editable
 - view for each category
 
-- Product info with more text + format (bullets index)
+- Product quantity remained!! For cart first then db
+
+- Product info with more text + format (bullets index): split the input with respect to /n/r, then
+convert to json or xml files (<p> ... <p>...)
 
 - Insert more images for each product: on update and on edit
 
