@@ -7,12 +7,18 @@
 <div class="jumbotron">
     <img src="http://www.mediasuperstore.com/image/cache/data/slideshow/electronics_sale_banner-980x280.jpg" />
 </div>
+
+<div class="alert alert-success" style="display:none">
+    <strong>Successfully added to your cart! Go to </strong><a href="@Url.Action("Index","Cart")" class="alert-link">Cart</a>.
+</div>
+
 <div class="row">
     @foreach (var product in Model)
     {
         @Html.Partial("Partial/_ProductThumbnail", product);
     }
 </div>
+
 
 @section scripts{
     @Scripts.Render("~/Scripts/Custom/Cart.js")

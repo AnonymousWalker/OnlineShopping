@@ -15,10 +15,11 @@ namespace OnlineShopping.Controllers
         {
             _service = service;
         }
+
         public ActionResult Index()
         {
             var cookie = Request.Cookies.AllKeys;
-            if (cookie == null || !cookie.Any(x => x.Contains("product"))) return View("Cart", new List<ProductViewModel>());
+            if (cookie == null || !cookie.Any(x => x.Contains("product"))) return View("Cart", new CartViewModel());
             List<int> productIds = new List<int>();
             foreach (var key in cookie)
             {
@@ -29,13 +30,43 @@ namespace OnlineShopping.Controllers
                     productIds.Add(id);
                 }
             }
+            var items = new CartViewModel();
+            foreach (var id in productIds)
+            {
+                var product = _service.GetProductInfo(id);
+                items.Products.Add(product);
+            }
+            return View("Cart", items);
+        }
+
+        public ActionResult UpdateCart()    //update ajax 
+        {
+            var cookie = Request.Cookies.AllKeys;
             var items = new List<ProductViewModel>();
+            if (cookie.Length==0 || !cookie.Any(x => x.Contains("product")))
+            {
+                return PartialView("_CartTable", items);
+            }
+            List<int> productIds = new List<int>();
+            foreach (var key in cookie)
+            {
+                if (key.Contains("product"))
+                {
+                    var IdString = key.Remove(0, 7);
+                    var id = Int32.Parse(IdString);
+                    productIds.Add(id);
+                }
+            }
+            if (!productIds.Any())
+            {
+                return RedirectToAction("Index");
+            }
             foreach (var id in productIds)
             {
                 var product = _service.GetProductInfo(id);
                 items.Add(product);
             }
-            return View("Cart", items);
+            return PartialView("_CartTable", items);
         }
     }
 }

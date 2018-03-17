@@ -20,6 +20,20 @@ function getQuantity(id) {
     return "";
 }
 
+function RemoveFromCart(obj) {
+    var d = new Date();
+    d.setTime(d.getTime() - 1000); //cookie expires last 1 sec
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = "product" + obj.value + "=1" + ";" + expires + ";path=/";
+    var cartUrl = $("#CartUrl").val();
+    $.ajax({
+        url: cartUrl,
+        type: "get",
+        success: function (html) {
+            $("#cartitems").html(html);
+        }
+    });
+}
 //function checkCookie() {
 //    var user = getCookie("username");
 //    if (user != "") {
