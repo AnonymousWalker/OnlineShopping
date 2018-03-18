@@ -11,7 +11,7 @@ namespace OnlineShopping.ViewModel
         {
             Products = new List<ProductViewModel>();
         }
-        public double TotalPrice => Products.Sum(x => x.Price);
+        public double TotalPrice => Products.Sum(x => (x.SalePrice==0)? x.Price : x.SalePrice);
         public IList<ProductViewModel> Products { get; set; }
 
     }

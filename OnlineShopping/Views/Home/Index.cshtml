@@ -5,7 +5,9 @@
 @Styles.Render("~/Content/Custom/product-thumbnail.css")
 
 <div class="jumbotron">
-    <img src="http://www.mediasuperstore.com/image/cache/data/slideshow/electronics_sale_banner-980x280.jpg" />
+    <a href="@Url.Action("Sales","Product")">
+        <img style="width:100%" src="http://www.mediasuperstore.com/image/cache/data/slideshow/electronics_sale_banner-980x280.jpg" />
+    </a>
 </div>
 
 <div class="alert alert-success" style="display:none">
@@ -20,7 +22,3 @@
 </div>
 
 
-@section scripts{
-    @Scripts.Render("~/Scripts/Custom/Cart.js")
-
-}

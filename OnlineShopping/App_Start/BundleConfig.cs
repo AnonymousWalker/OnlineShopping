@@ -23,13 +23,18 @@ namespace OnlineShopping
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.css"));
 
-            
+            //custom script
+            bundles.Add(new ScriptBundle("~/bundles/narbar-custom").Include(
+                        "~/Scripts/Custom/search-textbox.js",
+                        "~/Scripts/Custom/Cart.js"));
 
+            //custom style
             bundles.Add(new StyleBundle("~/bundles/customLayout")
                 .Include("~/Content/Custom/navbarcustom.css"));
         }

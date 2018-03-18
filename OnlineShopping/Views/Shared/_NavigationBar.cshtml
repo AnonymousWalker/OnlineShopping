@@ -18,7 +18,14 @@
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
             <ul id="navbar-right" class="nav navbar-nav navbar-right">
-                <li><a href=""><i class="glyphicon glyphicon-search"></i></a></li>
+                <li>
+                    <a><i class="glyphicon glyphicon-search"></i></a>
+                </li>
+                <li>
+                    <div id="searchpane">
+                        <input id="searchtextbox" data-url="@Url.Action("FilterProduct","Product")" class="form-control" type="text" placeholder="Search" style="float:right" />
+                    </div>
+                </li>
                 <li>
                     <a href="@Url.Action("Index","Cart")">
                         <i class="glyphicon glyphicon-shopping-cart"></i>

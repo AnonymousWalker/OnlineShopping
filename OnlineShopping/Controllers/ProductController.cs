@@ -89,6 +89,13 @@ namespace OnlineShopping.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult FilterProduct(string query)
+        {
+            var products = _service.GetProductsByName(query);
+
+            return View("ProductsWithCategory", new ProductWithCategoryViewModel { IsCategorized = false, Products = products, Query=query });
+        }
+
         public ActionResult Sales()
         {
             var model = _service.GetSaleOffProducts();

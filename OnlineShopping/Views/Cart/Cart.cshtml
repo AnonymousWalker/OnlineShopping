@@ -3,10 +3,12 @@
     ViewBag.Title = "Cart";
 }
 
+@Styles.Render("~/Content/Custom/cart.css")
+
 <h3>My Shopping Cart</h3>
-@Html.Hidden("CartUrl",Url.Action("UpdateCart","Cart"))
-<div id="cartitems"class="table">
-    @Html.Partial("_CartTable",Model.Products)
+@Html.Hidden("CartUrl", Url.Action("UpdateCart", "Cart"))
+<div id="cartitems" class="table">
+    @Html.Partial("_CartTable", Model)
 </div>
 <a class="btn btn-lg btn-success">Checkout</a>
 @section scripts

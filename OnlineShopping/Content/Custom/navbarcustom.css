@@ -19,6 +19,11 @@
     margin: 7.5px -15px;
 }
 
+#searchpane{
+    padding-top:8px;
+    padding-bottom:2px;
+}
+
     #navbar-right > li > span {
         display: block;
         position: relative;
@@ -48,8 +53,4 @@
     }
 }
 
-
-#carticon, #uploadlink, .glyphicon-search {
-    /*color: #ffdb66;*/
-}
 

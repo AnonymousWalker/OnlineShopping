@@ -4,19 +4,30 @@
 }
 @Styles.Render("~/Content/Custom/product-thumbnail.css")
 
-<div>
-    <ul class="breadcrumb">
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>All Categories</li>
-        <li>
-            @Html.ActionLink(Model.Category.ToString(), "Category", "Product", new { type = (int)Model.Category }, null)
-        </li>
-    </ul>
-</div>
+@if (Model.IsCategorized)
+{
+    <div>
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>All Categories</li>
+            <li>
+                @Html.ActionLink(Model.Category.ToString(), "Category", "Product", new { type = (int)Model.Category }, null)
+            </li>
+        </ul>
+    </div>
 
-<h3>@Model.Category</h3>
+    <h3>@Model.Category</h3>
+}
+else
+{
+    <h4>Search result for: <b>@Model.Query</b></h4>
+}
 
 <div class="container">
+    @if (!Model.Products.Any())
+    {
+        <h4>No items found</h4>
+    }
     <div class="row">
         @foreach (var product in Model.Products)
         {

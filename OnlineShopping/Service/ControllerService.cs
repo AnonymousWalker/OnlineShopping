@@ -81,6 +81,26 @@ namespace OnlineShopping.Service
             return listproducts;
         }
 
+        public IList<ProductViewModel> GetProductsByName(string name)
+        {
+            var products = Db.Products.Where(p => p.ProductName.Contains(name))
+                                    .Select(p => new ProductViewModel
+                                    {
+                                        ProductId = p.ProductId,
+                                        ProductName = p.ProductName,
+                                        Price = p.Price,
+                                        SalePrice = p.SalePrice,
+                                        DateCreated = p.DateCreated,
+                                        Description = p.Description,
+                                        Image = p.Images.FirstOrDefault()
+                                    }).ToList();
+            foreach (var item in products)
+            {
+                item.ImageSource = MapToImageModel(item.Image);
+            }
+            return products;
+        }
+
         public ProductViewModel GetProductInfo(int id)
         {
             var product = Db.Products.Find(id);

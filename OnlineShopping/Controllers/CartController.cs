@@ -19,7 +19,11 @@ namespace OnlineShopping.Controllers
         public ActionResult Index()
         {
             var cookie = Request.Cookies.AllKeys;
-            if (cookie == null || !cookie.Any(x => x.Contains("product"))) return View("Cart", new CartViewModel());
+            if (cookie == null || !cookie.Any(x => x.Contains("product")))
+            {
+                return View("Cart", new CartViewModel());
+            }
+
             List<int> productIds = new List<int>();
             foreach (var key in cookie)
             {
@@ -42,7 +46,7 @@ namespace OnlineShopping.Controllers
         public ActionResult UpdateCart()    //update ajax 
         {
             var cookie = Request.Cookies.AllKeys;
-            var items = new List<ProductViewModel>();
+            var items = new CartViewModel();
             if (cookie.Length==0 || !cookie.Any(x => x.Contains("product")))
             {
                 return PartialView("_CartTable", items);
@@ -64,7 +68,7 @@ namespace OnlineShopping.Controllers
             foreach (var id in productIds)
             {
                 var product = _service.GetProductInfo(id);
-                items.Add(product);
+                items.Products.Add(product);
             }
             return PartialView("_CartTable", items);
         }

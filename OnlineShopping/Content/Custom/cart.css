@@ -1,0 +1,10 @@
+﻿.thumbnailImg {
+    max-width:140px;
+    max-height:120px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#cartitems{
+    margin:20px;
+}

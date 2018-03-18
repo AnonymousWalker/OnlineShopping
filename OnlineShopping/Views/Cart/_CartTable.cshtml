@@ -1,32 +1,47 @@
-﻿@model List<ProductViewModel>
-
+﻿@model CartViewModel
 <table class="table-hover">
     <thead>
         <tr>
-            <td style="width:100px"><span id="countItems">@Model.Count</span> items</td>
+            <td style="width:100px"><span id="countItems">@Model.Products.Count</span> items</td>
             <td id="name" style="width:400px"><b>ProductName</b></td>
             <td style="width:150px"><b>Quantity</b></td>
             <td style="width:200px"><b>Price</b></td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
             <tr>
                 <td>
+                    <img class="thumbnailImg" src="@product.ImageSource" />
+                </td>
+                <td><h4>@product.ProductName</h4></td>
+                <td>1</td>
+                <td>
+                    @if (product.SalePrice == 0)
+                    {
+                        <h4>
+                            $ @Html.DisplayFor(x=> product.Price)
+                        </h4>
+                    }
+                    else
+                    {
+                        <h4>
+                            $ @Html.DisplayFor(x => product.SalePrice)
+                        </h4>
+                    }
+                </td>
+                <td>
                     <span>
-                        <button name="removefromcart" value="@product.ProductId" class="btn btn-sm btn-toolbar" onclick="RemoveFromCart(this)">
+                        <button name="removefromcart" value="@product.ProductId" class="btn btn-group-xs" onclick="RemoveFromCart(this)">
                             <i class="fa fa-remove"></i>
                         </button>
-                    </span><img />
+                    </span>
                 </td>
-                <td>@product.ProductName</td>
-                <td>1</td>
-                <td>$@product.Price</td>
             </tr>
         }
     </tbody>
 </table>
 <div>
-    <h3>Total: <span id="totalcash">$@Model.Sum(x => x.Price)</span></h3>
+    <h3>Total: <span id="totalcash">$ @Model.TotalPrice</span></h3>
 </div>
