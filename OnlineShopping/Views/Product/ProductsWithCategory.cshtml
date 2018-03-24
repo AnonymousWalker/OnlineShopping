@@ -1,6 +1,6 @@
 ﻿@model ProductWithCategoryViewModel
 @{
-    ViewBag.Title = "ProductsWithCategory";
+    ViewBag.Title = Model.Category;
 }
 @Styles.Render("~/Content/Custom/product-thumbnail.css")
 
@@ -35,4 +35,9 @@ else
         }
     </div>
 </div>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Custom/product.js")
+}
 

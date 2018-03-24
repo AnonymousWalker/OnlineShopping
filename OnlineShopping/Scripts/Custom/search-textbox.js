@@ -4,16 +4,16 @@
             var text = $(this).val();
             var url = $(this).data("url");
             window.location.href = url+"/?query="+text;
-            $.ajax({
-                url: $(this).data("url"),
-                type: "get",
-                data: {
-                    query: text
-                },
-                success: function (result) {
-                 //   window.location = result;
-                }
-            });
+            //$.ajax({
+            //    url: $(this).data("url"),
+            //    type: "get",
+            //    data: {
+            //        query: text
+            //    },
+            //    success: function (result) {
+            //        window.location = result;
+            //    }
+            //});
         }
 
     });
