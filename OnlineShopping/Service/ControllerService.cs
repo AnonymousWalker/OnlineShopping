@@ -19,7 +19,6 @@ namespace OnlineShopping.Service
 
         public IList<ProductViewModel> GetSaleOffProducts()
         {
-            var recently = DateTime.Now.AddDays(-10); // 10 days up to now
             var products = Db.Products.Include(p => p.Images)
                                     .Where(p => p.SalePrice != 0)
                                     .Select(p => new ProductViewModel

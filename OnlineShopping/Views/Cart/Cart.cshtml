@@ -10,7 +10,9 @@
 <div id="cartitems" class="table">
     @Html.Partial("_CartTable", Model)
 </div>
-<a class="btn btn-lg btn-success">Checkout</a>
+<div class="col-md-offset-11">
+    <a class="btn btn-lg btn-success">Checkout</a>
+</div>
 @section scripts
 {
     @Scripts.Render("~/Scripts/Custom/Cart.js")

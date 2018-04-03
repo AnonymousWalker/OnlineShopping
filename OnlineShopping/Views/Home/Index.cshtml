@@ -4,15 +4,19 @@
 }
 @Styles.Render("~/Content/Custom/product-thumbnail.css")
 
+<div id="addToCartSuccess" class="alert alert-success alert-dismissible fade in" role="alert" style="display:none">
+    <strong>Successfully added to cart! </strong><a href="@Url.Action("Index","Cart")" class="alert-link">Go to Cart</a>
+    <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 <div class="jumbotron">
     <a href="@Url.Action("Sales","Product")">
         <img style="width:100%" src="http://www.mediasuperstore.com/image/cache/data/slideshow/electronics_sale_banner-980x280.jpg" />
     </a>
 </div>
 
-<div class="alert alert-success" style="display:none">
-    <strong>Successfully added to your cart! Go to </strong><a href="@Url.Action("Index","Cart")" class="alert-link">Cart</a>.
-</div>
 
 <div class="row">
     @foreach (var product in Model)
