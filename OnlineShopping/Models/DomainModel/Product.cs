@@ -15,6 +15,7 @@ namespace OnlineShopping.Models.DomainModel
         [Required]
         public double Price { get; set; }
         public double SalePrice { get; set; }
+        public int Quantity { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public virtual ICollection<ProductImage> Images { get; set; }

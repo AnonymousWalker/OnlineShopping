@@ -312,6 +312,7 @@
     <Content Include="Views\Product\Sales.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\_CartTable.cshtml" />
+    <Content Include="Views\Home\Partial\_ModalPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

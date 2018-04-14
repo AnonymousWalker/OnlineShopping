@@ -2,10 +2,10 @@
 <table class="table-hover">
     <thead>
         <tr>
-            <td style="width:100px"><span id="countItems">@Model.Products.Count</span> items</td>
-            <td id="name" style="width:400px"><b>ProductName</b></td>
-            <td style="width:150px"><b>Quantity</b></td>
-            <td style="width:200px"><b>Price</b></td>
+            <td class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</td>
+            <td id="name" class="col-md-5"><b>ProductName</b></td>
+            <td class="col-md-2"><b>Quantity</b></td>
+            <td class="col-md-2"><b>Price</b></td>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +42,7 @@
         }
     </tbody>
 </table>
-<div>
+<div class="col-md-offset-10">
     <h3>Total: <span id="totalcash">$ @Model.TotalPrice</span></h3>
 </div>
+
