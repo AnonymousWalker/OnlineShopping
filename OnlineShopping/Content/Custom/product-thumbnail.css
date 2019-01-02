@@ -9,13 +9,19 @@ h4 > a{
     color: black;
 }
 
+.product-thumbnail{
+    margin-top: 20px;
+}
+
 .thumbnail{
     width: 100%;
     height: auto;
 }
 
-#product-link {
-    overflow: hidden;
+.product-link {
+    white-space:normal;
+    height: 70px;
+    overflow:hidden;
 }
 
 .thumbnailImg {

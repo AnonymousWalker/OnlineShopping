@@ -23,6 +23,10 @@ namespace OnlineShopping.ViewModel
         [DisplayFormat(DataFormatString = "{0:#,0.00}", ApplyFormatInEditMode = true)]
         public double SalePrice { get; set; }
 
+        [DisplayName("Quantity")]
+        [Range(0, int.MaxValue)]
+        public int Quantity { get; set; }
+
         [DisplayName("Description")]
         public string Description { get; set; }
     }

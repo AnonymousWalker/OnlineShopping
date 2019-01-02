@@ -15,6 +15,9 @@ namespace OnlineShopping.Models
         [Range(1,short.MaxValue,ErrorMessage ="Category is not selected or unavailable")]
         public ProductCategoryEnum Category { get; set; }
 
+        [Required(ErrorMessage = "Quantity is required")]
+        public int Quantity { get; set; }
+
         [Required(ErrorMessage = "Price is required")]
         public string Price { get; set; }
 

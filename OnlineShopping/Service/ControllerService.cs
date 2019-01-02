@@ -32,13 +32,14 @@ namespace OnlineShopping.Service
                                         Image = p.Images.FirstOrDefault()
                                     }).ToList();
 
+            //mapping images 
             foreach (var item in products)
             {
                 item.ImageSource = MapToImageModel(item.Image);
             }
             return products;
         }
-
+        
         public IList<ProductViewModel> GetAllProducts()
         {
             var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
@@ -52,13 +53,14 @@ namespace OnlineShopping.Service
                 Image = x.Images.FirstOrDefault()
             }).ToList();
 
+            //mapping images 
             foreach (var item in products)
             {
                 item.ImageSource = MapToImageModel(item.Image);
             }
             return products;
         }
-
+  
         public IList<ProductViewModel> GetProductsByCategory(int type)
         {   // should we map the entity to model before ToList or after?
             var listproducts = Db.Products.Include(p => p.Images).Where(p => p.Category == (ProductCategoryEnum)type)
@@ -73,13 +75,14 @@ namespace OnlineShopping.Service
                     Image = p.Images.FirstOrDefault()
                 }).ToList();
 
+            //mapping images 
             foreach (var item in listproducts)
             {
                 item.ImageSource = MapToImageModel(item.Image);
             }
             return listproducts;
         }
-
+        
         public IList<ProductViewModel> GetProductsByName(string name)
         {
             var products = Db.Products.Where(p => p.ProductName.Contains(name))
@@ -93,6 +96,8 @@ namespace OnlineShopping.Service
                                         Description = p.Description,
                                         Image = p.Images.FirstOrDefault()
                                     }).ToList();
+            
+            //mapping images 
             foreach (var item in products)
             {
                 item.ImageSource = MapToImageModel(item.Image);
@@ -128,6 +133,7 @@ namespace OnlineShopping.Service
             var product = new Product
             {
                 ProductName = model.ProductName,
+                Quantity = model.Quantity,
                 Price = Double.Parse(model.Price),
                 Category = model.Category,
                 Description = model.Description,

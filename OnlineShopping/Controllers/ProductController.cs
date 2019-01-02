@@ -38,12 +38,13 @@ namespace OnlineShopping.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(ProductViewModel model)
+        public ActionResult EditProduct(EditProductViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var product = Db.Products.Find(model.ProductId);
                 var name = product.ProductName;
+                var quantity = product.Quantity;
                 var price = product.Price;
                 var sale = product.SalePrice;
                 var description = product.Description;
@@ -59,7 +60,11 @@ namespace OnlineShopping.Controllers
                     product.Price = model.Price;
                     isChanged = true;
                 }
-
+                if (!quantity.Equals(model.Quantity))
+                {
+                    product.Quantity = model.Quantity;
+                    isChanged = true;
+                }
                 if (!sale.Equals(model.SalePrice))
                 {
                     product.SalePrice = model.SalePrice;

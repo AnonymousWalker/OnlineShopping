@@ -30,7 +30,7 @@
         </div>
     </div>*@
 
-<div class="col-md-3">
+<div class="col-md-3 product-thumbnail">
     <div class="thumbnail">
         <div class="square">
             <a href="@Url.Action("Index","Product", new { id = Model.ProductId })">
@@ -39,7 +39,8 @@
         </div>
         <div>
             @Html.ActionLink(Model.ProductName, "Index", "Product",
-                            new { id = Model.ProductId }, new { title= Model.ProductName, @class = "btn btn-lg btn-block", style = "overflow:hidden" })
+                            new { id = Model.ProductId }, new { title= Model.ProductName,
+                                @class = "btn btn-lg btn-block product-link", style = "white-space: normal" })
         </div>
         <div>
             <p class="productname">
