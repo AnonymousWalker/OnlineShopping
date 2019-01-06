@@ -101,12 +101,6 @@ namespace OnlineShopping.Controllers
             return View("ProductsWithCategory", new ProductWithCategoryViewModel { IsCategorized = false, Products = products, Query=query });
         }
 
-        public ActionResult Sales()
-        {
-            var model = _service.GetSaleOffProducts();
-            return View(model);
-        }
-
         public ActionResult UploadProduct()
         {
             return View();

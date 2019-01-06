@@ -1,5 +1,6 @@
 namespace OnlineShopping.Models
 {
+    using OnlineShopping.Migrations;
     using OnlineShopping.Models.DomainModel;
     using System;
     using System.Data.Entity;
@@ -15,7 +16,7 @@ namespace OnlineShopping.Models
         // connection string in the application configuration file.
         public OnlineShoppingDbContext() : base("name=OnlineShoppingDbContext")
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<OnlineShoppingDbContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<OnlineShoppingDbContext, Configuration>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

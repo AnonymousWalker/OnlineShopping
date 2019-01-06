@@ -45,5 +45,12 @@ namespace OnlineShopping.Controllers
 
             return View();
         }
+
+        public ActionResult Sales()
+        {
+            var viewModel = _service.GetSaleOffProducts();
+            return View(viewModel);
+        }
+
     }
 }

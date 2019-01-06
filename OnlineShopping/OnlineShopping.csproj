@@ -195,7 +195,7 @@
     <Compile Include="Models\DomainModel\Product.cs" />
     <Compile Include="Models\DomainModel\ProductImage.cs" />
     <Compile Include="Models\OnlineShoppingDbContext.cs" />
-    <Compile Include="Models\UploadProductModel.cs" />
+    <Compile Include="ViewModel\UploadProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\ConfirmActionModel.cs" />
@@ -309,7 +309,7 @@
     <Content Include="Views\Shared\_NavigationBar.cshtml" />
     <Content Include="Views\Product\ProductsWithCategory.cshtml" />
     <Content Include="Views\Shared\_Category.cshtml" />
-    <Content Include="Views\Product\Sales.cshtml" />
+    <Content Include="Views\Home\Sales.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\_CartTable.cshtml" />
     <Content Include="Views\Home\Partial\_ModalPopup.cshtml" />
