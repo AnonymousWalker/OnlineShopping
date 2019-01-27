@@ -234,7 +234,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\Cart.js" />
-    <Content Include="Scripts\Custom\product.js" />
     <Content Include="Scripts\Custom\search-textbox.js" />
     <Content Include="Scripts\Custom\UploadImage.js" />
     <Content Include="Scripts\esm\popper-utils.js" />

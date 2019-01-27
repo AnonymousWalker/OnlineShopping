@@ -128,6 +128,13 @@ namespace OnlineShopping.Service
             };
         }
 
+        //public ProductViewModel GetProductInfoWithIds(IEnumerable<int> idSet)
+        //{
+        //    var products = Db.Products.Where(p => idSet.Contains(p.ProductId))
+        //                                .ToList();
+        //    return products;
+        //}
+
         public void UploadProduct(UploadProductModel model)
         {
             var product = new Product

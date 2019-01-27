@@ -5,6 +5,7 @@
 @Styles.Render("~/Content/Custom/product-thumbnail.css")
 
 @Html.Partial("Partial/_ModalPopup")
+@Html.Hidden("AddToCartUrl", Url.Action("AddToCart", "Cart"))
 
 <div class="jumbotron">
     <a href="@Url.Action("Sales","Product")">
@@ -18,9 +19,3 @@
         @Html.Partial("Partial/_ProductThumbnail", product);
     }
 </div>
-
-@section scripts
-{
-    @Scripts.Render("~/Scripts/Custom/product.js")
-}
-
