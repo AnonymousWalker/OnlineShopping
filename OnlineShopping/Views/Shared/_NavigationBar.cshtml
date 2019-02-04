@@ -17,14 +17,14 @@
                 <li><a href="@Url.Action("Sales","Home")">Sales</a></li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
-            <ul id="navbar-right" class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a><i class="glyphicon glyphicon-search"></i></a>
                 </li>
                 <li>
                     <div id="searchpane">
-                        <input id="searchtextbox" data-url="@Url.Action("FilterProduct","Product")" 
-                               class="form-control" type="text" placeholder="Search product" style="float:right" />
+                        <input id="searchtextbox" data-url="@Url.Action("FilterProduct","Product")"
+                               class="form-control" type="text" placeholder="Search..." style="float:right" />
                     </div>
                 </li>
                 <li>
@@ -33,7 +33,28 @@
                         <i>1</i>
                     </a>
                 </li>
-                <li><a id="uploadlink" href="@Url.Action("UploadProduct","Product")">Upload <i class="glyphicon glyphicon-upload"></i></a></li>
+                <li>
+                    <a id="uploadlink" href="@Url.Action("UploadProduct","Product")">
+                        Upload
+                        <i class="glyphicon glyphicon-upload"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="login-popup-area column-flex">
+                        <div>
+                            <p><a class="btn btn-block">Sign In</a></p>
+                        </div>
+                        <div>
+                            <p>or</p>
+                        </div>
+                        <div>
+                            <p><a class="btn btn-block">Create an Account</a></p>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
