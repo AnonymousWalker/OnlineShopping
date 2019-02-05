@@ -12,7 +12,7 @@ namespace OnlineShopping.Controllers
 {
     public class HomeController : Controller
     {
-        private ControllerService _service;
+        private ControllerService _service;     //DI - unity configured with constructor
         public HomeController(ControllerService service)
         {
             _service = service;
@@ -45,5 +45,12 @@ namespace OnlineShopping.Controllers
 
             return View();
         }
+
+        public ActionResult Sales()
+        {
+            var viewModel = _service.GetSaleOffProducts();
+            return View(viewModel);
+        }
+
     }
 }

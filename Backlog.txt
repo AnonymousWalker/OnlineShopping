@@ -1,15 +1,16 @@
-- Product quantity remained!! For cart first then db
+- Product quantity. Cart + Db
 
 - Product info with more text + format (bullets index): split the input with respect to /n/r, then
 convert to json or xml files (<p> ... <p>...)
 
 - Insert more images for each product: on update and on edit
 
--Checkout 
-- Store cookie using server response (ajax)
+- Checkout 
 
-- Modal Cash checkout
+- Store cookie using server response (ajax)
 
 - Server side pagination (Home + Each category)
 
 - Should we join the two views: category vs sales into 1 ?
+
+- Multi-users: seller vs. customer

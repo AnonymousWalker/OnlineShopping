@@ -1,36 +1,6 @@
 ﻿@model ProductViewModel
 
-@*<div class="col-md-3">
-        <div class="thumbnail">
-            <h4>@Html.ActionLink(Model.ProductName, "Index", "Product", new { id = Model.ProductId }, new { @class = "btn btn-lg btn-block" })</h4>
-            <div class="square">
-                <a class="thumbnail-link" href="@Url.Action("Index","Product", new { id = Model.ProductId })">
-                    <img class="thumbnailImg" src="@Model.ImageSource" />
-                </a>
-            </div>
-
-            <div class="row inputgroup">
-                <div class="col-md-8" style="text-align:center">
-                    <a id="pricetag" class="btn btn-toolbar" href="@Url.Action("Index","Product", new { id = Model.ProductId })">
-                        @if (Model.SalePrice > 0)
-                        {
-                            @*<p><strike>@("$ " + Html.DisplayFor(x => x.Price))</strike></p>
-                            @("$ " + Html.DisplayFor(x => x.SalePrice))
-                        }
-                        else
-                        {
-                            @("$ " + Html.DisplayFor(x => x.Price))
-                        }
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <button name="AddtoCart" value="@Model.ProductId" class="btn btn-warning" title="Add to cart" onclick="AddToCart(this)">+ <i class="fa fa-cart-arrow-down"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-<div class="col-md-3">
+<div class="col-md-3 product-thumbnail">
     <div class="thumbnail">
         <div class="square">
             <a href="@Url.Action("Index","Product", new { id = Model.ProductId })">
@@ -39,7 +9,8 @@
         </div>
         <div>
             @Html.ActionLink(Model.ProductName, "Index", "Product",
-                            new { id = Model.ProductId }, new { title= Model.ProductName, @class = "btn btn-lg btn-block", style = "overflow:hidden" })
+                            new { id = Model.ProductId }, new { title= Model.ProductName,
+                                @class = "btn btn-lg btn-block product-link", style = "white-space: normal" })
         </div>
         <div>
             <p class="productname">
@@ -54,7 +25,7 @@
                 }
             </p>
             <button name="AddtoCart" value="@Model.ProductId"
-                    class="btn btn-block btn-warning" title="Add to cart" onclick="AddToCart(this)">
+                    class="btn btn-block btn-warning" title="Add to cart">
                 Add to cart
                 <i class="fa fa-cart-arrow-down"></i>
             </button>

@@ -7,7 +7,7 @@
 }
 
 .navbar-inverse .navbar-brand {
-    color: #89f442;
+color: #89f442;
 }
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
@@ -15,42 +15,35 @@
     background-color: transparent;
 }
 
-#navbar-right {
-    margin: 7.5px -15px;
+#searchpane {
+    padding-top: 8px;
+    padding-bottom: 2px;
 }
 
-#searchpane{
-    padding-top:8px;
-    padding-bottom:2px;
+.login-popup-area {
+    /*visibility:hidden;*/
+    width: 200px;
+    height: 150px;
+    background: #e4f5f0;
+    border: 1pt solid #bba9a9;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    right: -20%;
 }
 
-    #navbar-right > li > span {
-        display: block;
-        position: relative;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        padding-right: 15px;
-        padding-left: 15px;
-        line-height: 20px;
-        max-height: 340px;
-        overflow-x: visible;
-        /*color: #f2cb6a;*/
-    }
-
-@media (min-width: 768px) {
-    #navbar-right {
-        float: right;
-        margin: 0;
-    }
-
-    #navbar-right > li {
-        float: left;
-    }
-
-    #navbar-right > li > a {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
+.column-flex {
+    display:flex;
+    flex-direction: column;
 }
 
+.column-flex::after {       /*clear floats after columns*/
+  content: "";
+  display: table;
+  clear: both;
+}
 
+#nav-account:hover .login-popup-area {
+    visibility: visible;
+}

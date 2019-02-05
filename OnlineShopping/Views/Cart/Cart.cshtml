@@ -6,7 +6,7 @@
 @Styles.Render("~/Content/Custom/cart.css")
 
 <h3>My Shopping Cart</h3>
-@Html.Hidden("CartUrl", Url.Action("UpdateCart", "Cart"))
+@Html.Hidden("RemoveFromCart", Url.Action("RemoveFromCart", "Cart"))
 <div id="cartitems" class="table">
     @Html.Partial("_CartTable", Model)
 </div>
