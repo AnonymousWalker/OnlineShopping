@@ -43,3 +43,7 @@ color: #89f442;
   display: table;
   clear: both;
 }
+
+#nav-account:hover .login-popup-area {
+    visibility: visible;
+}
