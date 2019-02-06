@@ -31,12 +31,12 @@ namespace OnlineShopping
 
             //custom script
             bundles.Add(new ScriptBundle("~/bundles/narbar-custom").Include(
-                        "~/Scripts/Custom/search-textbox.js",
+                        "~/Scripts/Custom/navigation-bar.js",
                         "~/Scripts/Custom/Cart.js"));
 
             //custom style
             bundles.Add(new StyleBundle("~/bundles/customLayout")
-                .Include("~/Content/Custom/navbarcustom.css"));
+                .Include("~/Content/Custom/navigation-bar.css"));
         }
     }
 }

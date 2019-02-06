@@ -216,7 +216,7 @@
     <Content Include="Content\Custom\product.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Custom\navbarcustom.css" />
+    <Content Include="Content\Custom\navigation-bar.css" />
     <Content Include="Content\Custom\UploadProduct.css" />
     <Content Include="Content\Picture\Asus Tranformation Flip.jpg" />
     <Content Include="Content\Picture\B100.jpeg" />
@@ -236,7 +236,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\Cart.js" />
-    <Content Include="Scripts\Custom\search-textbox.js" />
+    <Content Include="Scripts\Custom\navigation-bar.js" />
     <Content Include="Scripts\Custom\UploadImage.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
