@@ -23,7 +23,7 @@ color: #89f442;
 .login-popup-area {
     visibility:hidden;
     width: 200px;
-    height: 150px;
+    height: 100px;
     background: #e4f5f0;
     border: 1pt solid #bba9a9;
     border-radius: 8px;

@@ -12,6 +12,7 @@ namespace OnlineShopping.Service
     public class ControllerService
     {
         private OnlineShoppingDbContext Db;
+
         public ControllerService(OnlineShoppingDbContext db)
         {
             Db = db;
@@ -128,13 +129,40 @@ namespace OnlineShopping.Service
             };
         }
 
-        //public ProductViewModel GetProductInfoWithIds(IEnumerable<int> idSet)
+        //public ProductViewModel GetProductsByIds(IEnumerable<int> ids)
         //{
         //    var products = Db.Products.Where(p => idSet.Contains(p.ProductId))
         //                                .ToList();
         //    return products;
         //}
 
+        public User AuthenticateUser(string username, string password)
+        {
+            //Check from db
+            var user = Db.Users.Where(u => u.Username == username && u.Password == password)
+                                .First();
+            return user;
+        }
+
+        public bool CreateUserAccount(SignUpViewModel account)
+        {
+            try
+            {
+                Db.Users.Add(new User
+                {
+                    Username = account.Username,
+                    Password = account.Password,
+                    FirstName = account.FirstName,
+                    LastName = account.LastName,
+                    Email = account.Email
+                });
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
         public void UploadProduct(UploadProductModel model)
         {
             var product = new Product

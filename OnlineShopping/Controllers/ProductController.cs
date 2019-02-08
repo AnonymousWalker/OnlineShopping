@@ -119,7 +119,7 @@ namespace OnlineShopping.Controllers
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 

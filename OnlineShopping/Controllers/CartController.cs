@@ -23,6 +23,7 @@ namespace OnlineShopping.Controllers
             return View("Cart", new CartViewModel() { Products = products });
         }
 
+        //   Ajax
         public ActionResult AddToCartSession(int? productId)
         {
             //STORE INTO SESSION

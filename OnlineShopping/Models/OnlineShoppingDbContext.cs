@@ -19,11 +19,30 @@ namespace OnlineShopping.Models
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<OnlineShoppingDbContext, Configuration>());
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)    //Fluent API
+        {
+            
+            modelBuilder.Entity<Cart>()
+                        .HasKey(c => new { c.ProductId, c.UserId });    //config composite PKs 
+
+            modelBuilder.Entity<Cart>()
+                        .HasRequired(c => c.Product)
+                        .WithMany(c => c.Carts)
+                        .HasForeignKey(c => c.ProductId);
+
+            modelBuilder.Entity<Cart>()
+                        .HasRequired(c => c.User)
+                        .WithMany(c => c.Carts)
+                        .HasForeignKey(c => c.UserId);
+            base.OnModelCreating(modelBuilder);
+
+        }
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ProductImage> Images { get; set; }
+        
     }
 }
