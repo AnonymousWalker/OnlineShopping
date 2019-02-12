@@ -51,3 +51,8 @@ color: #89f442;
 #nav-account:hover .login-popup-area {
     visibility:visible;
 }
+
+.btn-sign-in {
+    margin: auto;
+    width: 70%;
+}

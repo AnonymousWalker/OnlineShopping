@@ -140,7 +140,7 @@ namespace OnlineShopping.Service
         {
             //Check from db
             var user = Db.Users.Where(u => u.Username == username && u.Password == password)
-                                .First();
+                                .FirstOrDefault();
             return user;
         }
 

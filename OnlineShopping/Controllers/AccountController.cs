@@ -49,10 +49,19 @@ namespace OnlineShopping.Controllers
             return View("Login", model);
         }
 
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignUp(SignUpViewModel model)
         {
-            var user = controllerService.AuthenticateUser(model.Username, model.Password);
+            if (!ModelState.IsValid || model == null)
+            {
+                return View(model);
+            }
+                var user = controllerService.AuthenticateUser(model.Username, model.Password);
             if (user != null && user.Username == model.Username)
             {
                 model.HasError = true;
@@ -68,13 +77,8 @@ namespace OnlineShopping.Controllers
                 model.Message = "An exception has occurred from server database.";
                 return View("Login", model);
             }
-            
-            return View("SignUpSuccess", new RequestResult
-            {
-                HasError = false,
-                ResultCode = ResultCode.Success,
-                Message = "Congrats " + model.FirstName + "! You have successfully signed up."
-            });
+            ViewBag.Message = "Congratulations, " + model.FirstName + "! You have successfully signed up.";
+            return View("SignUpSuccess");
         }
     }
 }

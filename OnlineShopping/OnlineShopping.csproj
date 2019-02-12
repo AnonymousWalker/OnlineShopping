@@ -321,7 +321,8 @@
     <Content Include="Views\Cart\_CartTable.cshtml" />
     <Content Include="Views\Home\Partial\_ModalPopup.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\SignUpSucess.cshtml" />
+    <Content Include="Views\Account\SignUpSuccess.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

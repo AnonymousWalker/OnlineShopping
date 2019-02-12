@@ -29,14 +29,21 @@ namespace OnlineShopping
                       "~/Content/site.css",
                       "~/Content/font-awesome.css"));
 
-            //custom script
+            //  ********    Custom Script   *********
+            //  
+
             bundles.Add(new ScriptBundle("~/bundles/narbar-custom").Include(
                         "~/Scripts/Custom/navigation-bar.js",
                         "~/Scripts/Custom/Cart.js"));
 
-            //custom style
-            bundles.Add(new StyleBundle("~/bundles/customLayout")
+
+
+            //  ********    Custom Style    *********
+            //  
+
+            bundles.Add(new StyleBundle("~/bundles/custom-nav")
                 .Include("~/Content/Custom/navigation-bar.css"));
+                
         }
     }
 }
