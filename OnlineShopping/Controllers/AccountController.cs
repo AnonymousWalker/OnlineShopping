@@ -19,27 +19,32 @@ namespace OnlineShopping.Controllers
         {
             controllerService = service;
         }
+
         public ActionResult Index()
         {
             return RedirectToAction("Login");
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult SignIn(LoginViewModel model)
         {
             var user = controllerService.AuthenticateUser(model.Username, model.Password);
-            //UserAccount = ...AuthenticateUser (null/not)
             if (user != null)
             {
                 Session["UserID"] = user.UserId;
                 Session["UserFirstName"] = user.FirstName;
-                //Todo: change app's state as logged in 
+
+                //Todo: update user authorization
                 //
+                
 
                 return RedirectToAction("Index", "Home");
             }
@@ -47,7 +52,7 @@ namespace OnlineShopping.Controllers
             model.Message = "Invalid username or password, please try again!";
             model.Password = string.Empty;
             return View("Login", model);
-        }
+        }   
 
         public ActionResult SignUp()
         {

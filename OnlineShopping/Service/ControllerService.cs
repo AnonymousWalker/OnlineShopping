@@ -156,6 +156,7 @@ namespace OnlineShopping.Service
                     LastName = account.LastName,
                     Email = account.Email
                 });
+                Db.SaveChanges();
             }
             catch (Exception e)
             {

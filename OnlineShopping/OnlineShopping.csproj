@@ -183,6 +183,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="AuthAccess.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Models\DomainModel\Cart.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\SignUpSuccess.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Shared\_UserAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
