@@ -23,15 +23,32 @@ namespace OnlineShopping.Controllers
             return View("Cart", new CartViewModel() { Products = products });
         }
 
+        public bool AddToCart(int? productId)
+        {
+            return (AccountController.IsLogged) ? AddToUserCart(productId) : AddToCartCookie(productId);
+        }
+
+        public bool AddToCartCookie(int? productId)
+        {
+            if (!productId.HasValue) return false;
+
+            var cart = new HttpCookie("cart");
+            cart["product"+ productId.ToString()] = "1";
+            cart.Expires.Add(new TimeSpan(1, 0, 0));
+            Response.Cookies.Add(cart);
+
+            return true;
+        }
+
         //   Ajax
-        public ActionResult AddToCartSession(int? productId)
+        public bool AddToUserCart(int? productId)
         {
             //STORE INTO SESSION
             //...
 
             // change # of items in cart after added
 
-            if (!productId.HasValue) return null;
+            if (!productId.HasValue) return false;
 
             var ids = Session["productIds"] as Dictionary<int,int>;
             if (ids == null)
@@ -41,7 +58,7 @@ namespace OnlineShopping.Controllers
 
             ids.Add((int)productId, 1);
             Session["productIds"] = ids;
-            return null;
+            return true;
         }
 
         public ActionResult RemoveFromCart()    //ajax 
