@@ -1,4 +1,4 @@
-﻿@if (!User.Identity.IsAuthenticated)
+﻿@if (!OnlineShopping.Controllers.AccountController.IsLogged)
 {
     <div class="login-popup-area column-flex">
         <div class="btn-sign-in">
@@ -7,6 +7,18 @@
         <span class="text-center"> or </span>
         <div class="btn-sign-in">
             <a href="@Url.Action("SignUp", "Account")" class="btn btn-block">Create an Account</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="login-popup-area column-flex">
+        <div class="btn-sign-in">
+            <a class="btn btn-block" href="#">My Orders</a>
+        </div>
+        <span class="text-center"> or </span>
+        <div class="btn-sign-in">
+            <a class="btn btn-block" href="@Url.Action("Logout", "Account")">Log Out</a>
         </div>
     </div>
 }

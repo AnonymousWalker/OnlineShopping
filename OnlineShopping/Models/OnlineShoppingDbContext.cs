@@ -14,7 +14,7 @@ namespace OnlineShopping.Models
         // 
         // If you wish to target a different database and/or database provider, modify the 'OnlineShoppingDbContext' 
         // connection string in the application configuration file.
-        public OnlineShoppingDbContext() : base("name=OnlineShoppingDbContext")
+        public OnlineShoppingDbContext() : base("name=OnlineShoppingDb")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<OnlineShoppingDbContext, Configuration>());
         }
