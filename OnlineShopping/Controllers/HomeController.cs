@@ -29,6 +29,7 @@ namespace OnlineShopping.Controllers
         public ActionResult Index()
         {
             var products = _service.GetAllProducts();
+            var isLogged = Session["IsLogged"];
             return View(products);
         }
 

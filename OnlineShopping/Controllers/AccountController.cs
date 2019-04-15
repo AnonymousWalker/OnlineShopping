@@ -14,6 +14,7 @@ namespace OnlineShopping.Controllers
     {
         // GET: Account
         private ControllerService controllerService;
+        public static bool IsLogged = false;
 
         public AccountController(ControllerService service)
         {
@@ -41,10 +42,9 @@ namespace OnlineShopping.Controllers
             {
                 Session["UserID"] = user.UserId;
                 Session["UserFirstName"] = user.FirstName;
-
+                IsLogged = true;
                 //Todo: update user authorization
                 //
-                
 
                 return RedirectToAction("Index", "Home");
             }
@@ -84,6 +84,12 @@ namespace OnlineShopping.Controllers
             }
             ViewBag.Message = "Congratulations, " + model.FirstName + "! You have successfully signed up.";
             return View("SignUpSuccess");
+        }
+
+        public ActionResult Logout()
+        {
+            IsLogged = false;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
