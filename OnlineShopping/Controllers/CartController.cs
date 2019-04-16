@@ -1,4 +1,6 @@
-﻿using OnlineShopping.Service;
+﻿
+
+using OnlineShopping.Service;
 using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -31,13 +33,33 @@ namespace OnlineShopping.Controllers
         public bool AddToCartCookie(int? productId)
         {
             if (!productId.HasValue) return false;
+            var currentCookie = Request.Cookies["cart"];
+            string productIdString = productId.ToString();
 
-            var cart = new HttpCookie("cart");
-            cart["product"+ productId.ToString()] = "1";
-            cart.Expires.Add(new TimeSpan(1, 0, 0));
-            Response.Cookies.Add(cart);
+            if (currentCookie == null)
+            {
+                var cart = new HttpCookie("cart");
+                cart["product" + productIdString] = "1";    //set default quantity = 1
+                cart.Expires.Add(new TimeSpan(1, 0, 0));
+                Response.Cookies.Add(cart);
+                return true;
+            }
+            else if (currentCookie.HasKeys && currentCookie["product" + productIdString] == null)
+            {
+                currentCookie.Values.Add("product" + productIdString, "1");
+                Response.Cookies.Set(currentCookie);
+                return true;
+            }
+            else if (currentCookie.HasKeys)
+            {
+                var quantity = currentCookie["product" + productIdString];
+                int q = int.Parse(quantity.ToString()) + 1;
+                currentCookie["product" + productIdString] = q.ToString();
+                Response.Cookies.Set(currentCookie);
+                return true;
+            }
 
-            return true;
+            return false;
         }
 
         //   Ajax
@@ -50,7 +72,7 @@ namespace OnlineShopping.Controllers
 
             if (!productId.HasValue) return false;
 
-            var ids = Session["productIds"] as Dictionary<int,int>;
+            var ids = Session["productIds"] as Dictionary<int, int>;
             if (ids == null)
             {
                 ids = new Dictionary<int, int>();
@@ -76,7 +98,7 @@ namespace OnlineShopping.Controllers
                 if (key.Contains("product"))
                 {
                     var IdString = key.Remove(0, 7);
-                    var id = Int32.Parse(IdString);
+                    var id = int.Parse(IdString);
                     productIds.Add(id);
                 }
             }
@@ -96,26 +118,26 @@ namespace OnlineShopping.Controllers
         private IList<ProductViewModel> GetCartFromCookie()
         {
             var cartProducts = new List<ProductViewModel>();
-            var cookie = Request.Cookies.AllKeys;   //get all cookie names
-            if (cookie == null || !cookie.Any(x => x.Contains("product")))
+            var cartCookie = Request.Cookies["cart"];
+
+            if (cartCookie == null || !cartCookie.HasKeys)
             {
                 return cartProducts;
             }
 
-            List<int> productIds = new List<int>();
-            foreach (var key in cookie)
+            var productIds = new Dictionary<int, int>();
+            foreach (var product in cartCookie.Values.AllKeys)
             {
-                if (key.Contains("product"))
-                {
-                    var idString = key.Remove(0, 7);    //remove the "product" string (7 chars) to get prod id
-                    var id = Int32.Parse(idString);
-                    productIds.Add(id);
-                }
+                var idString = product.ToString().Remove(0, 7);    //remove the "product" string (7 chars) to get prod id
+                var id = int.Parse(idString);
+                var quant = int.Parse(cartCookie[product]);
+                productIds.Add(id, quant);
             }
 
             foreach (var id in productIds)
             {
-                var product = _service.GetProductInfo(id);
+                var product = _service.GetProductInfo(id.Key);
+                product.Quantity = id.Value;
                 cartProducts.Add(product);
             }
             return cartProducts;
@@ -126,7 +148,7 @@ namespace OnlineShopping.Controllers
             var cartItems = Session["productIds"] as Dictionary<int, int>;    //id + quantity
             if (cartItems == null || cartItems.Count == 0) return null;
 
-            
+
 
             return null;
         }
