@@ -33,7 +33,7 @@ namespace OnlineShopping.Controllers
         public bool AddToCartCookie(int? productId)
         {
             if (!productId.HasValue) return false;
-            var currentCookie = Request.Cookies["cart"];
+            var currentCookie = Request.Cookies["cart"];    //Request.Cookie is from Client
             string productIdString = productId.ToString();
 
             if (currentCookie == null)
@@ -83,17 +83,18 @@ namespace OnlineShopping.Controllers
             return true;
         }
 
-        public ActionResult RemoveFromCart()    //ajax 
+        public ActionResult RemoveFromCart(int? productId)    //ajax 
         {
-            var cookie = Request.Cookies.AllKeys;
+            var cookie = Request.Cookies["cart"];
             var items = new CartViewModel();
-            if (cookie.Length == 0 || !cookie.Any(x => x.Contains("product")))
+
+            if (cookie == null|| !cookie.HasKeys)
             {
                 return PartialView("_CartTable", items);
             }
 
             List<int> productIds = new List<int>();
-            foreach (var key in cookie)
+            foreach (var key in cookie.Values)
             {
                 if (key.Contains("product"))
                 {

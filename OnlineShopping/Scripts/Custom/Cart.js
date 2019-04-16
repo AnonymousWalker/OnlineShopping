@@ -65,16 +65,18 @@ function addToCartSession(obj) {   //add to session
 }
 
 function removeFromCart(obj) {
-    var d = new Date();
-    d.setTime(d.getTime() - 1000); //cookie expires last 1 sec
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = "product" + obj.value + "=1" + ";" + expires + ";path=/";
-    var urlAction = $("#RemoveFromCart").val();
+    //var d = new Date();
+    //d.setTime(d.getTime() - 1000); //cookie expires last 1 sec
+    //var expires = "expires=" + d.toUTCString();
+    //document.cookie = "product" + obj.value + "=1" + ";" + expires + ";path=/";
+    var urlAction = $("#RemoveFromCartUrl").val();
+    var productId = obj.value;
     $.ajax({
         url: urlAction,
         type: "get",
-        success: function (html) {
-            $("#cartitems").html(html);
+        data: productId,
+        success: function (response) {
+            $("#cartitems").html(response);
         }
     });
 }
