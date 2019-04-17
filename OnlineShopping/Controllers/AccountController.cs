@@ -91,5 +91,10 @@ namespace OnlineShopping.Controllers
             IsLogged = false;
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Transaction()
+        {
+
+        }
     }
 }

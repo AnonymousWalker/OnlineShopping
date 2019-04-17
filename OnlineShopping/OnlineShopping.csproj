@@ -325,6 +325,7 @@
     <Content Include="Views\Account\SignUpSuccess.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\_UserAccount.cshtml" />
+    <Content Include="Views\Account\Transaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
