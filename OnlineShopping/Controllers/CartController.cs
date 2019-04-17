@@ -21,7 +21,8 @@ namespace OnlineShopping.Controllers
         public ActionResult Index()
         {
             IList<ProductViewModel> products = 
-                (AccountController.IsLogged) ? GetUserCart() : GetCartFromCookie();
+                (AccountController.IsLogged) ? GetUserCartData(Convert.ToInt32(Session["UserID"])) 
+                                            : GetCartDataFromCookie();
             return View("Cart", new CartViewModel() { Products = products });
         }
 
@@ -62,42 +63,37 @@ namespace OnlineShopping.Controllers
             return false;
         }
 
-        //   Ajax
         public bool AddToUserCart(int? productId)
+
         {
-            //STORE INTO SESSION
-            //...
-
-            // change # of items in cart after added
-
             if (!productId.HasValue) return false;
 
-            var ids = Session["productIds"] as Dictionary<int, int>;
-            if (ids == null)
-            {
-                ids = new Dictionary<int, int>();
-            }
-
-            ids.Add((int)productId, 1);
-            Session["productIds"] = ids;
+            _service.AddToUserCart(Convert.ToInt32(Session["UserID"]), (int)productId);
             return true;
         }
 
         public ActionResult RemoveFromCart(int? productId)    //ajax 
         {
-            var cookie = Request.Cookies["cart"];
             var cartData = new CartViewModel();
+            if (!productId.HasValue) return PartialView("_CartTable", cartData);
 
-            if (cookie == null|| !cookie.HasKeys)
+            if (!AccountController.IsLogged)
             {
-                return PartialView("_CartTable", cartData);
+                var cookie = Request.Cookies["cart"];
+                if (cookie == null || !cookie.HasKeys)
+                {
+                    return PartialView("_CartTable", cartData);
+                }
+                string productIdString = productId.ToString();
+                if (cookie.Values["product" + productIdString] != null)
+                {
+                    cookie.Values.Remove("product" + productIdString);
+                    Response.Cookies.Set(cookie);   //update cookie to client
+                }
             }
-            string productIdString = productId.ToString();
-            if (cookie.Values["product"+ productIdString] != null)
+            else
             {
-                cookie.Values.Remove("product" + productIdString);
-                Response.Cookies.Set(cookie);   //update cookie to client
-                //cartData.Products = GetCartFromCookie();
+                _service.RemoveFromUserCart(Convert.ToInt32(Session["UserID"]), (int)productId);
             }
             return PartialView("_CartTable", cartData);
         }
@@ -107,7 +103,7 @@ namespace OnlineShopping.Controllers
             //if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
 
             //create transaction
-
+            
 
             //show success page
             return View("OrderSuccess", new CartViewModel());
@@ -116,7 +112,7 @@ namespace OnlineShopping.Controllers
 
         #region private
 
-        private IList<ProductViewModel> GetCartFromCookie()
+        private IList<ProductViewModel> GetCartDataFromCookie()
         {
             var cartProducts = new List<ProductViewModel>();
             var cartCookie = Request.Cookies["cart"];
@@ -144,15 +140,9 @@ namespace OnlineShopping.Controllers
             return cartProducts;
         }
 
-        private IList<ProductViewModel> GetUserCart()
+        private IList<ProductViewModel> GetUserCartData(int userId)
         {
-            var items = new List<ProductViewModel>();
-            var cartItems = Session["productIds"] as Dictionary<int, int>;    //id + quantity
-            if (cartItems == null || cartItems.Count == 0) return items;
-
-
-
-            return items;
+            return (userId == 0) ? new List<ProductViewModel>() : _service.GetUserCartData(userId);
         }
 
         #endregion

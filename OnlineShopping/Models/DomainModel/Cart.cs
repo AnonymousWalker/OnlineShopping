@@ -10,12 +10,12 @@ namespace OnlineShopping.Models.DomainModel
     [Table("Cart",Schema ="dbo")]
     public class Cart
     {
-        //[Key]
-        //[Column(Order = 0)]
+        [Key]
+        [Column(Order = 1)]
         public int UserId { get; set; }
 
-        //[Key]
-        //[Column(Order = 1)]
+        [Key]
+        [Column(Order = 2)]
         public int ProductId { get; set; }
 
         public virtual User User { get; set; }

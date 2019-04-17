@@ -28,5 +28,6 @@ namespace OnlineShopping.Models.DomainModel
         public string LastName { get; set; }
 
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

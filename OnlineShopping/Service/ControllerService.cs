@@ -34,13 +34,10 @@ namespace OnlineShopping.Service
                                     }).ToList();
 
             //mapping images 
-            foreach (var item in products)
-            {
-                item.ImageSource = MapToImageModel(item.Image);
-            }
-            return products;
+
+            return MapImageToModel(products);
         }
-        
+
         public IList<ProductViewModel> GetAllProducts()
         {
             var products = Db.Products.Include(x => x.Images).Select(x => new ProductViewModel
@@ -55,16 +52,12 @@ namespace OnlineShopping.Service
             }).ToList();
 
             //mapping images 
-            foreach (var item in products)
-            {
-                item.ImageSource = MapToImageModel(item.Image);
-            }
-            return products;
+            return MapImageToModel(products);
         }
-  
+
         public IList<ProductViewModel> GetProductsByCategory(int type)
         {   // should we map the entity to model before ToList or after?
-            var listproducts = Db.Products.Include(p => p.Images).Where(p => p.Category == (ProductCategoryEnum)type)
+            var products = Db.Products.Include(p => p.Images).Where(p => p.Category == (ProductCategoryEnum)type)
                 .Select(p => new ProductViewModel
                 {
                     ProductId = p.ProductId,
@@ -77,13 +70,9 @@ namespace OnlineShopping.Service
                 }).ToList();
 
             //mapping images 
-            foreach (var item in listproducts)
-            {
-                item.ImageSource = MapToImageModel(item.Image);
-            }
-            return listproducts;
+            return MapImageToModel(products);
         }
-        
+
         public IList<ProductViewModel> GetProductsByName(string name)
         {
             var products = Db.Products.Where(p => p.ProductName.Contains(name))
@@ -97,13 +86,9 @@ namespace OnlineShopping.Service
                                         Description = p.Description,
                                         Image = p.Images.FirstOrDefault()
                                     }).ToList();
-            
+
             //mapping images 
-            foreach (var item in products)
-            {
-                item.ImageSource = MapToImageModel(item.Image);
-            }
-            return products;
+            return MapImageToModel(products);
         }
 
         public ProductViewModel GetProductInfo(int id)
@@ -188,15 +173,71 @@ namespace OnlineShopping.Service
             Db.SaveChanges();
         }
 
-        private string MapToImageModel(ProductImage image)
+        public IList<ProductViewModel> GetUserCartData(int userId)
         {
-            string imagesrc = "";
-            if (image != null)
+            var cartProduct = Db.Carts.Where(c => c.UserId == userId)
+                            .Join(Db.Products, c => c.ProductId, p => p.ProductId,
+                                (c, p) => new ProductViewModel
+                                {
+                                    ProductId = p.ProductId,
+                                    ProductName = p.ProductName,
+                                    Category = p.Category,
+                                    Price = p.Price,
+                                    SalePrice = p.SalePrice,
+                                    Quantity = c.Quantity,
+                                    Description = p.Description,
+                                    DateCreated = p.DateCreated,
+                                    Image = p.Images.FirstOrDefault()
+                                }).ToList();
+            //mapping img
+            return MapImageToModel(cartProduct);
+        }
+
+        public void AddToUserCart(int userId, int productId)
+        {
+            var isExist = Db.Carts.Any(c => c.UserId == userId && c.ProductId == productId);
+            if (!isExist)
             {
-                var base64img = Convert.ToBase64String(image.Content);
-                imagesrc = string.Format("data:image/jpg;base64,{0}", base64img);
+                Db.Carts.Add(new Cart
+                {
+                    UserId = userId,
+                    ProductId = productId,
+                    Quantity = 1
+                });
             }
-            return imagesrc;
+            else
+            {
+                var currentItem = Db.Carts.FirstOrDefault(c => c.UserId == userId && c.ProductId == productId);
+                currentItem.Quantity++;
+            }
+            Db.SaveChanges();
+        }
+
+        public void RemoveFromUserCart(int userId, int productId)
+        {
+            var isExist = Db.Carts.Any(c => c.UserId == userId && c.ProductId == productId);
+            if (isExist)
+            {
+                var cartItem = Db.Carts.FirstOrDefault(c => c.UserId == userId && c.ProductId == productId);
+                Db.Carts.Remove(cartItem);
+            }
+            Db.SaveChanges();
+        }
+
+        private IList<ProductViewModel> MapImageToModel(IList<ProductViewModel> products)
+        {
+            string imageSrcString = "";
+            foreach (var p in products)
+            {
+                if (p.Image != null)
+                {
+                    //concert from binary byte[] to string source
+                    var base64img = Convert.ToBase64String(p.Image.Content);
+                    imageSrcString = string.Format("data:image/jpg;base64,{0}", base64img);
+                }
+                p.ImageSource = imageSrcString;
+            }
+            return products;
         }
     }
 }
