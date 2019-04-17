@@ -7,16 +7,14 @@
 <h3 class="text-success">
     We have received your order, please allow us some time to ship. Thank you!
 </h3>
-<h4>Order#: <a href="#">102621</a></h4>
-<h4>Order Total: @Html.DisplayFor(x=>x.TotalPrice)</h4>
-<br />
-<h4>Order detail displays here</h4>
+<h4>Order#: <a href="#">102621</a> - Total Amount: @Html.DisplayFor(x => x.TotalPrice)</h4>
+<h5>@Model.Products.Count item(s)</h5>
 <br />
 <div>
     <table class="table table-bordered table-condensed" style="max-width:60%">
         <thead>
             <tr>
-                <th class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</th>
+                <th class="col-md-3"><b>Product</b></th>
                 <th id="name" class="col-md-5"><b>ProductName</b></th>
                 <th class="col-md-2"><b>Quantity</b></th>
                 <th class="col-md-2"><b>Amount</b></th>
@@ -28,7 +26,7 @@
                 <tr>
                     <td>
                         <a href="@Url.Action("Index","Product", new { id = product.ProductId })">
-                            <img class="thumbnailImg" src="@product.ImageSource" />
+                            <img width="150" height="120" class="thumbnailImg" src="@product.ImageSource" />
                         </a>
                     </td>
                     <td><h4>@product.ProductName</h4></td>

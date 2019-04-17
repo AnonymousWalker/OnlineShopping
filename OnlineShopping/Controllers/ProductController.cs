@@ -123,11 +123,12 @@ namespace OnlineShopping.Controllers
             }
         }
 
-        [Authorize]
         public string UploadProductNavLink()
         {
-            return "<a id='uploadlink' href=" + Url.Action("UploadProduct") +
-                ">Upload <i class='glyphicon glyphicon-upload'></i></a>";
+            return (AccountController.IsLogged) ?
+                "<a id='uploadlink' href=" + Url.Action("UploadProduct") +
+                ">Upload <i class='glyphicon glyphicon-upload'></i></a>"
+                : "";
         }
     }
 }

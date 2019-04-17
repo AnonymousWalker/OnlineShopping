@@ -100,13 +100,13 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Checkout()
         {
-            //if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
+            if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
 
             //create transaction
-            
+            var orderItems = _service.GetUserCartData(Convert.ToInt32(Session["UserID"]));
 
             //show success page
-            return View("OrderSuccess", new CartViewModel());
+            return View("OrderSuccess", new CartViewModel { Products = orderItems });
         }
 
 

@@ -7,11 +7,7 @@
 
 @Styles.Render("~/Content/Custom/cart.css")
 
-<h3>My Transcation</h3>
-@Html.Hidden("RemoveFromCartUrl", Url.Action("RemoveFromCart", "Cart"))
-<div id="cartitems" class="table">
-    @*@Html.Partial("_CartTable", Model)*@
-</div>
+<h3>My Transaction</h3>
 @section scripts
 {
     @Scripts.Render("~/Scripts/Custom/Cart.js")
