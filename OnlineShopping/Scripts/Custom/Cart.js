@@ -74,9 +74,12 @@ function removeFromCart(obj) {
     $.ajax({
         url: urlAction,
         type: "get",
-        data: productId,
+        data: {
+            productId: productId
+        },
         success: function (response) {
-            $("#cartitems").html(response);
+            //$("#cartitems").html(response);
+            window.location.reload();
         }
     });
 }

@@ -36,7 +36,7 @@ namespace OnlineShopping.Controllers
             var currentCookie = Request.Cookies["cart"];    //Request.Cookie is from Client
             string productIdString = productId.ToString();
 
-            if (currentCookie == null)
+            if (currentCookie == null)  //create cookie
             {
                 var cart = new HttpCookie("cart");
                 cart["product" + productIdString] = "1";    //set default quantity = 1
@@ -44,13 +44,13 @@ namespace OnlineShopping.Controllers
                 Response.Cookies.Add(cart);
                 return true;
             }
-            else if (currentCookie.HasKeys && currentCookie["product" + productIdString] == null)
+            else if (currentCookie["product" + productIdString] == null)    //add item
             {
                 currentCookie.Values.Add("product" + productIdString, "1");
                 Response.Cookies.Set(currentCookie);
                 return true;
             }
-            else if (currentCookie.HasKeys)
+            else if (currentCookie.HasKeys) //edit 
             {
                 var quantity = currentCookie["product" + productIdString];
                 int q = int.Parse(quantity.ToString()) + 1;
@@ -86,34 +86,20 @@ namespace OnlineShopping.Controllers
         public ActionResult RemoveFromCart(int? productId)    //ajax 
         {
             var cookie = Request.Cookies["cart"];
-            var items = new CartViewModel();
+            var cartData = new CartViewModel();
 
             if (cookie == null|| !cookie.HasKeys)
             {
-                return PartialView("_CartTable", items);
+                return PartialView("_CartTable", cartData);
             }
-
-            List<int> productIds = new List<int>();
-            foreach (var key in cookie.Values)
+            string productIdString = productId.ToString();
+            if (cookie.Values["product"+ productIdString] != null)
             {
-                if (key.Contains("product"))
-                {
-                    var IdString = key.Remove(0, 7);
-                    var id = int.Parse(IdString);
-                    productIds.Add(id);
-                }
+                cookie.Values.Remove("product" + productIdString);
+                Response.Cookies.Set(cookie);   //update cookie to client
+                //cartData.Products = GetCartFromCookie();
             }
-            if (!productIds.Any())
-            {
-                return RedirectToAction("Index");
-            }
-
-            foreach (var id in productIds)
-            {
-                var product = _service.GetProductInfo(id);
-                items.Products.Add(product);
-            }
-            return PartialView("_CartTable", items);
+            return PartialView("_CartTable", cartData);
         }
 
         private IList<ProductViewModel> GetCartFromCookie()
