@@ -2,15 +2,6 @@
     font-size: 16px;
 }
 
-.validation-summary-errors > ul > li{
-    color: red;
-    font-weight: bold;
-}
-
-.field-validation-error{
-    color:red;
-}
-
 #fileBrowser {
     position: relative;
     overflow: hidden;

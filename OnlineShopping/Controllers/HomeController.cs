@@ -18,7 +18,7 @@ namespace OnlineShopping.Controllers
             _service = service;
             //using (var context = new OnlineShoppingDbContext())
             //{
-            //    context.Products.Add(new Product { ProductName = "USB 3.0 Kingston 32GB", Price = 5.0, Description = "Fast drive storage", DateCreated = DateTime.Now.Date });
+            //    context.Products.Add(new Product { ProductName = "USB 3.0 Kingston 32GB", Price = 5.0, Quantity = 10, Description = "Fast drive storage", DateCreated = DateTime.Now.Date });
             //    context.SaveChanges();
             //}
         }
@@ -29,6 +29,7 @@ namespace OnlineShopping.Controllers
         public ActionResult Index()
         {
             var products = _service.GetAllProducts();
+            var isLogged = Session["IsLogged"];
             return View(products);
         }
 

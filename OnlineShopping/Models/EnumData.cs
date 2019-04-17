@@ -24,4 +24,11 @@ namespace OnlineShopping.Models
         Mouse,
         Keyboard
     }
+
+    public enum ResultCode
+    {
+        Success = 0,
+        Error = 1,
+        Warning = 2
+    }
 }

@@ -1,40 +1,33 @@
-﻿@{ ViewBag.Title = "Login";}
-<!DOCTYPE html>
+﻿@model LoginViewModel
+@{ ViewBag.Title = "Login";}
+@Styles.Render("~/Content/Custom/login.css")
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>User Account</title>
-    @Styles.Render("~/Content/Custom/login.css")
-</head>
-
-<body>
-    <br />
-    <div class="login-body-container">
-        <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+<br />
+@Html.Hidden("sign-in-url", Url.Action("SignIn", "Account"))
+<div class="login-body-container">
+    <h4 class="card-title text-center mb-4 mt-1">Log in</h4>
+    <hr>
+    <p class="text-danger text-center">@Html.DisplayTextFor(x => x.Message)</p>
+    @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+    {
+        <div class="form-group">
+            <div class="input-group input-group-center">
+                <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = "Username" })
+            </div> <!-- input-group.// -->
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <div class="input-group input-group-center">
+                <span class="input-group-addon"> <i class="fa fa-lock"></i> </span>
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "********", type = "password" })
+            </div>
+        </div>
+        <div class="form-group btn-sign-in">
+            <button id="sign-in-btn" class="btn btn-primary btn-block">Sign in</button>
+        </div>
         <hr>
-        <p class="text-success text-center">Message goes here</p>
-        <form>
-            <div class="form-group">
-                <div class="input-group input-group-center">
-                    <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
-                    <input name="" class="form-control" placeholder="Username" type="email">
-                </div> <!-- input-group.// -->
-            </div> <!-- form-group// -->
-            <div class="form-group">
-                <div class="input-group input-group-center">
-                    <span class="input-group-addon"> <i class="fa fa-lock"></i> </span>
-                    <input class="form-control" placeholder="******" type="password">
-                </div> <!-- input-group.// -->
-            </div> <!-- form-group// -->
-            <div class="form-group btn-sign-in">
-                <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-            </div> <!-- form-group// -->
-            <hr>
-            <p class="text-center">Don't have an account?<a href="#" class=""> Sign up here</a></p>
-        </form>
-    </div>
-    <!-- input group container.// -->
+        <p class="text-center">Don't have an account? <a href="@Url.Action("SignUp","Account")" >Sign up here</a></p>
+    }
+</div>
 
-</body>
-</html>
+@Scripts.Render("~Script/Custom/login.js")

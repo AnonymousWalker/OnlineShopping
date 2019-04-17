@@ -9,6 +9,7 @@ namespace OnlineShopping.Models.DomainModel
     public class Product
     {
         public int ProductId { get; set; }
+
         [Required]
         public string ProductName { get; set; }
         public ProductCategoryEnum Category { get; set; }
@@ -18,6 +19,8 @@ namespace OnlineShopping.Models.DomainModel
         public int Quantity { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
+
         public virtual ICollection<ProductImage> Images { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+﻿@if (!AccountController.IsLogged)
+{
+    <div class="login-popup-area column-flex">
+        <div class="btn-sign-in">
+            <a class="btn btn-block" href="@Url.Action("Index", "Account")">Log In</a>
+        </div>
+        <span class="text-center"> or </span>
+        <div class="btn-sign-in">
+            <a href="@Url.Action("SignUp", "Account")" class="btn btn-block">Create an Account</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="login-popup-area column-flex">
+        <div class="btn-sign-in">
+            <a class="btn btn-block" href="@Url.Action("Transaction", "Account")">My Orders</a>
+        </div>
+        <span class="text-center"> or </span>
+        <div class="btn-sign-in">
+            <a class="btn btn-block" href="@Url.Action("Logout", "Account")">Log Out</a>
+        </div>
+    </div>
+}

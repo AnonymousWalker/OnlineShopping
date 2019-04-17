@@ -1,4 +1,6 @@
-﻿using OnlineShopping.Service;
+﻿
+
+using OnlineShopping.Service;
 using OnlineShopping.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,16 +25,54 @@ namespace OnlineShopping.Controllers
             return View("Cart", new CartViewModel() { Products = products });
         }
 
-        public ActionResult AddToCartSession(int? productId)
+        public bool AddToCart(int? productId)
+        {
+            return (AccountController.IsLogged) ? AddToUserCart(productId) : AddToCartCookie(productId);
+        }
+
+        public bool AddToCartCookie(int? productId)
+        {
+            if (!productId.HasValue) return false;
+            var currentCookie = Request.Cookies["cart"];    //Request.Cookie is from Client
+            string productIdString = productId.ToString();
+
+            if (currentCookie == null)  //create cookie
+            {
+                var cart = new HttpCookie("cart");
+                cart["product" + productIdString] = "1";    //set default quantity = 1
+                cart.Expires.Add(new TimeSpan(1, 0, 0));
+                Response.Cookies.Add(cart);
+                return true;
+            }
+            else if (currentCookie["product" + productIdString] == null)    //add item
+            {
+                currentCookie.Values.Add("product" + productIdString, "1");
+                Response.Cookies.Set(currentCookie);
+                return true;
+            }
+            else if (currentCookie.HasKeys) //edit 
+            {
+                var quantity = currentCookie["product" + productIdString];
+                int q = int.Parse(quantity.ToString()) + 1;
+                currentCookie["product" + productIdString] = q.ToString();
+                Response.Cookies.Set(currentCookie);
+                return true;
+            }
+
+            return false;
+        }
+
+        //   Ajax
+        public bool AddToUserCart(int? productId)
         {
             //STORE INTO SESSION
             //...
 
             // change # of items in cart after added
 
-            if (!productId.HasValue) return null;
+            if (!productId.HasValue) return false;
 
-            var ids = Session["productIds"] as Dictionary<int,int>;
+            var ids = Session["productIds"] as Dictionary<int, int>;
             if (ids == null)
             {
                 ids = new Dictionary<int, int>();
@@ -40,64 +80,51 @@ namespace OnlineShopping.Controllers
 
             ids.Add((int)productId, 1);
             Session["productIds"] = ids;
-            return null;
+            return true;
         }
 
-        public ActionResult RemoveFromCart()    //ajax 
+        public ActionResult RemoveFromCart(int? productId)    //ajax 
         {
-            var cookie = Request.Cookies.AllKeys;
-            var items = new CartViewModel();
-            if (cookie.Length == 0 || !cookie.Any(x => x.Contains("product")))
-            {
-                return PartialView("_CartTable", items);
-            }
+            var cookie = Request.Cookies["cart"];
+            var cartData = new CartViewModel();
 
-            List<int> productIds = new List<int>();
-            foreach (var key in cookie)
+            if (cookie == null|| !cookie.HasKeys)
             {
-                if (key.Contains("product"))
-                {
-                    var IdString = key.Remove(0, 7);
-                    var id = Int32.Parse(IdString);
-                    productIds.Add(id);
-                }
+                return PartialView("_CartTable", cartData);
             }
-            if (!productIds.Any())
+            string productIdString = productId.ToString();
+            if (cookie.Values["product"+ productIdString] != null)
             {
-                return RedirectToAction("Index");
+                cookie.Values.Remove("product" + productIdString);
+                Response.Cookies.Set(cookie);   //update cookie to client
+                //cartData.Products = GetCartFromCookie();
             }
-
-            foreach (var id in productIds)
-            {
-                var product = _service.GetProductInfo(id);
-                items.Products.Add(product);
-            }
-            return PartialView("_CartTable", items);
+            return PartialView("_CartTable", cartData);
         }
 
         private IList<ProductViewModel> GetCartFromCookie()
         {
             var cartProducts = new List<ProductViewModel>();
-            var cookie = Request.Cookies.AllKeys;   //get all cookie names
-            if (cookie == null || !cookie.Any(x => x.Contains("product")))
+            var cartCookie = Request.Cookies["cart"];
+
+            if (cartCookie == null || !cartCookie.HasKeys)
             {
                 return cartProducts;
             }
 
-            List<int> productIds = new List<int>();
-            foreach (var key in cookie)
+            var productIds = new Dictionary<int, int>();
+            foreach (var product in cartCookie.Values.AllKeys)
             {
-                if (key.Contains("product"))
-                {
-                    var idString = key.Remove(0, 7);    //remove the "product" string (7 chars) to get prod id
-                    var id = Int32.Parse(idString);
-                    productIds.Add(id);
-                }
+                var idString = product.ToString().Remove(0, 7);    //remove the "product" string (7 chars) to get prod id
+                var id = int.Parse(idString);
+                var quant = int.Parse(cartCookie[product]);
+                productIds.Add(id, quant);
             }
 
             foreach (var id in productIds)
             {
-                var product = _service.GetProductInfo(id);
+                var product = _service.GetProductInfo(id.Key);
+                product.Quantity = id.Value;
                 cartProducts.Add(product);
             }
             return cartProducts;
@@ -108,7 +135,7 @@ namespace OnlineShopping.Controllers
             var cartItems = Session["productIds"] as Dictionary<int, int>;    //id + quantity
             if (cartItems == null || cartItems.Count == 0) return null;
 
-            
+
 
             return null;
         }

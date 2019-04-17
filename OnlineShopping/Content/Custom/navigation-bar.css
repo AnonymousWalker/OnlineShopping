@@ -21,16 +21,16 @@ color: #89f442;
 }
 
 .login-popup-area {
-    /*visibility:hidden;*/
+    visibility:hidden;
     width: 200px;
-    height: 150px;
+    height: 100px;
     background: #e4f5f0;
     border: 1pt solid #bba9a9;
     border-radius: 8px;
     position: absolute;
     z-index: 1;
-    top: 60px;
-    right: -20%;
+    margin-top: -10px;
+    right: -30px;
 }
 
 .column-flex {
@@ -39,11 +39,20 @@ color: #89f442;
 }
 
 .column-flex::after {       /*clear floats after columns*/
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#nav-account {
+    width: 40px;
 }
 
 #nav-account:hover .login-popup-area {
-    visibility: visible;
+    visibility:visible;
+}
+
+.btn-sign-in {
+    margin: auto;
+    width: 70%;
 }

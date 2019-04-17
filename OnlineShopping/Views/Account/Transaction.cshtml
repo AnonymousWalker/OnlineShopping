@@ -1,17 +1,16 @@
-﻿@model CartViewModel
+﻿
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "Transaction";
 }
+
+<h2>Transaction</h2>
 
 @Styles.Render("~/Content/Custom/cart.css")
 
-<h3>My Shopping Cart</h3>
+<h3>My Transcation</h3>
 @Html.Hidden("RemoveFromCartUrl", Url.Action("RemoveFromCart", "Cart"))
 <div id="cartitems" class="table">
-    @Html.Partial("_CartTable", Model)
-</div>
-<div class="col-md-offset-11">
-    <a class="btn btn-lg btn-success">Checkout</a>
+    @*@Html.Partial("_CartTable", Model)*@
 </div>
 @section scripts
 {

@@ -119,9 +119,15 @@ namespace OnlineShopping.Controllers
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 
+        [Authorize]
+        public string UploadProductNavLink()
+        {
+            return "<a id='uploadlink' href=" + Url.Action("UploadProduct") +
+                ">Upload <i class='glyphicon glyphicon-upload'></i></a>";
+        }
     }
 }

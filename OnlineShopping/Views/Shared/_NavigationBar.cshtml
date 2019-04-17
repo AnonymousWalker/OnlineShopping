@@ -33,27 +33,17 @@
                         <i>1</i>
                     </a>
                 </li>
-                <li>
-                    <a id="uploadlink" href="@Url.Action("UploadProduct","Product")">
+                <li>@Html.Action("UploadProductNavLink","Product")
+                    @*<a id="uploadlink" href="@Url.Action("UploadProduct","Product")">
                         Upload
                         <i class="glyphicon glyphicon-upload"></i>
-                    </a>
+                    </a>*@
                 </li>
-                <li  id="nav-account" >
+                <li id="nav-account">
                     <a href="#" onclick="">
                         <i class="fa fa-user"></i>
                     </a>
-                    <div class="login-popup-area column-flex">
-                        <div>
-                            <p><a class="btn btn-block" href="@Url.Action("Index","Account")">Sign In</a></p>
-                        </div>
-                        <div>
-                            <p>or</p>
-                        </div>
-                        <div>
-                            <p><a class="btn btn-block">Create an Account</a></p>
-                        </div>
-                    </div>
+                    @Html.Partial("_UserAccount")
                 </li>
             </ul>
         </div>

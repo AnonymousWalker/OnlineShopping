@@ -17,4 +17,10 @@
         }
 
     });
+
+    //$("#nav-account").hover(function (e) {
+    //    $(".login-popup-area").show();
+    //}, function (e) {
+    //    $(".login-popup-area").hide();
+    //});
 });

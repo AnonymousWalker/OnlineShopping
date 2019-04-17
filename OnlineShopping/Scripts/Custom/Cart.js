@@ -32,9 +32,20 @@ function addToCart(obj) {   //add to cookie
     var d = new Date();
     var id = obj.value;
     if (id == null || typeof id === "undefined") return;
-    d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); //cookie lasts 1h
-    var timeExpire = "expires=" + d.toUTCString();
-    document.cookie = "product" + id + "=1" + ";" + timeExpire + ";path=/";
+    //d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); //cookie lasts 1h
+    //var timeExpire = "expires=" + d.toUTCString();
+    //document.cookie = "product" + id + "=1" + ";" + timeExpire + ";path=/";
+    var urlString = $("#AddToCartUrl").val();
+    $.ajax({
+        url: urlString,
+        type: "get",
+        data: {
+            productId: obj.value,
+        },
+        success: function (result) {    //should return with success or failure -> pop-up
+            //
+        }
+    });
 
 }
 
@@ -54,16 +65,21 @@ function addToCartSession(obj) {   //add to session
 }
 
 function removeFromCart(obj) {
-    var d = new Date();
-    d.setTime(d.getTime() - 1000); //cookie expires last 1 sec
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = "product" + obj.value + "=1" + ";" + expires + ";path=/";
-    var urlAction = $("#RemoveFromCart").val();
+    //var d = new Date();
+    //d.setTime(d.getTime() - 1000); //cookie expires last 1 sec
+    //var expires = "expires=" + d.toUTCString();
+    //document.cookie = "product" + obj.value + "=1" + ";" + expires + ";path=/";
+    var urlAction = $("#RemoveFromCartUrl").val();
+    var productId = obj.value;
     $.ajax({
         url: urlAction,
         type: "get",
-        success: function (html) {
-            $("#cartitems").html(html);
+        data: {
+            productId: productId
+        },
+        success: function (response) {
+            //$("#cartitems").html(response);
+            window.location.reload();
         }
     });
 }

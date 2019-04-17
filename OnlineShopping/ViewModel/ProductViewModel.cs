@@ -15,6 +15,8 @@ namespace OnlineShopping.ViewModel
         [DisplayFormat(DataFormatString = "{0:#,0.00}", ApplyFormatInEditMode = true)]
         public double Price { get; set; }
 
+        public int Quantity { get; set; } = 1;
+
         [DisplayFormat(DataFormatString = "{0:#,0.00}", ApplyFormatInEditMode = true)]
         public double SalePrice { get; set; }
         public string Description { get; set; }
