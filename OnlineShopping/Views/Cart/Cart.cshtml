@@ -7,10 +7,10 @@
 
 <h3>My Shopping Cart</h3>
 @Html.Hidden("RemoveFromCartUrl", Url.Action("RemoveFromCart", "Cart"))
-<div id="cartitems" class="table">
+<div id="cartitems">
     @Html.Partial("_CartTable", Model)
 </div>
-<div class="col-md-offset-11">
+<div class="text-right" style="margin-right:20px;">
     <a class="btn btn-lg btn-success" href="@Url.Action("Checkout","Cart")">Checkout</a>
 </div>
 @section scripts

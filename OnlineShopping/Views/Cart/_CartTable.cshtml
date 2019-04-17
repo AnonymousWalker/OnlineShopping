@@ -1,5 +1,5 @@
 ﻿@model CartViewModel
-<table class="table-hover">
+<table class="table table-hover">
     <thead>
         <tr>
             <th class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</th>
@@ -23,7 +23,7 @@
                     @if (product.SalePrice == 0)
                     {
                         <h4>
-                            $ @Html.DisplayFor(x=> product.Price)
+                            $ @Html.DisplayFor(x => product.Price)
                         </h4>
                     }
                     else
@@ -44,7 +44,5 @@
         }
     </tbody>
 </table>
-<div class="col-md-offset-10">
-    <h3>Total: <span id="totalcash">$ @Model.TotalPrice</span></h3>
-</div>
+<h3 class="text-right">Cart Total: <span id="totalcash">@Html.DisplayFor(x => x.TotalPrice)</span></h3>
 
