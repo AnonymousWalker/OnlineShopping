@@ -2,10 +2,10 @@
 <table class="table-hover">
     <thead>
         <tr>
-            <td class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</td>
-            <td id="name" class="col-md-5"><b>ProductName</b></td>
-            <td class="col-md-2"><b>Quantity</b></td>
-            <td class="col-md-2"><b>Price</b></td>
+            <th class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</th>
+            <th id="name" class="col-md-5"><b>ProductName</b></th>
+            <th class="col-md-2"><b>Quantity</b></th>
+            <th class="col-md-2"><b>Price</b></th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +13,9 @@
         {
             <tr>
                 <td>
-                    <img class="thumbnailImg" src="@product.ImageSource" />
+                    <a href="@Url.Action("Index","Product", new { id = product.ProductId })">
+                        <img class="thumbnailImg" src="@product.ImageSource" />
+                    </a>
                 </td>
                 <td><h4>@product.ProductName</h4></td>
                 <td>@product.Quantity</td>

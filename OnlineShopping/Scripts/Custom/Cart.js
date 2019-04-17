@@ -29,18 +29,14 @@ function SetTimeOut() {     //show pop-up alert
 // >>
 
 function addToCart(obj) {   //add to cookie
-    var d = new Date();
     var id = obj.value;
     if (id == null || typeof id === "undefined") return;
-    //d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); //cookie lasts 1h
-    //var timeExpire = "expires=" + d.toUTCString();
-    //document.cookie = "product" + id + "=1" + ";" + timeExpire + ";path=/";
     var urlString = $("#AddToCartUrl").val();
     $.ajax({
         url: urlString,
         type: "get",
         data: {
-            productId: obj.value,
+            productId: id,
         },
         success: function (result) {    //should return with success or failure -> pop-up
             //

@@ -1,17 +1,57 @@
-﻿
+﻿@model CartViewModel
 @{
     ViewBag.Title = "Order Success";
 }
 
 <br />
 <h3 class="text-success">
-    We have received your order! Please allow us some time to process, thank you!
+    We have received your order! Please allow us some time to ship, thank you!
 </h3>
 <h4>Order#: <a href="#">102621</a></h4>
+<h4>Total Amount: $@Model.TotalPrice</h4>
 <br />
 <h4>Order detail displays here</h4>
 <br />
-
+<div>
+    <table class="table table-bordered table-condensed" style="max-width:60%">
+        <thead>
+            <tr>
+                <th class="col-md-3"><span id="countItems">@Model.Products.Count</span> item(s)</th>
+                <th id="name" class="col-md-5"><b>ProductName</b></th>
+                <th class="col-md-2"><b>Quantity</b></th>
+                <th class="col-md-2"><b>Amount</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Index","Product", new { id = product.ProductId })">
+                            <img class="thumbnailImg" src="@product.ImageSource" />
+                        </a>
+                    </td>
+                    <td><h4>@product.ProductName</h4></td>
+                    <td>@product.Quantity</td>
+                    <td>
+                        @if (product.SalePrice == 0)
+                        {
+                            <h4>
+                                $ @Html.DisplayFor(x => product.Price)
+                            </h4>
+                        }
+                        else
+                        {
+                            <h4>
+                                $ @Html.DisplayFor(x => product.SalePrice)
+                            </h4>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 
 

@@ -118,13 +118,13 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Checkout()
         {
-            if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
+            //if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
 
             //create transaction
 
 
             //show success page
-            return View("OrderSuccess");
+            return View("OrderSuccess", new CartViewModel());
         }
 
 
