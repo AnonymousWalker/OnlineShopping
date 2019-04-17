@@ -96,12 +96,12 @@ namespace OnlineShopping.Controllers
             List<int> productIds = new List<int>();
             foreach (var key in cookie.Values)
             {
-                if (key.Contains("product"))
-                {
-                    var IdString = key.Remove(0, 7);
-                    var id = int.Parse(IdString);
-                    productIds.Add(id);
-                }
+                //if (key.Contains("product"))
+                //{
+                //    var IdString = key.Remove(0, 7);
+                //    var id = int.Parse(IdString);
+                //    productIds.Add(id);
+                //}
             }
             if (!productIds.Any())
             {

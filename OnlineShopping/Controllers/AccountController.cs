@@ -94,7 +94,7 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Transaction()
         {
-
+            return View();
         }
     }
 }
