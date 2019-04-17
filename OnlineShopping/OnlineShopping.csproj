@@ -187,6 +187,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Models\DomainModel\Cart.cs" />
+    <Compile Include="Models\DomainModel\Transaction.cs" />
+    <Compile Include="Models\DomainModel\TransactionDetail.cs" />
     <Compile Include="Models\DomainModel\User.cs" />
     <Compile Include="Service\ControllerService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
