@@ -11,7 +11,7 @@
     @Html.Partial("_CartTable", Model)
 </div>
 <div class="col-md-offset-11">
-    <a class="btn btn-lg btn-success">Checkout</a>
+    <a class="btn btn-lg btn-success" href="@Url.Action("Checkout","Cart")">Checkout</a>
 </div>
 @section scripts
 {

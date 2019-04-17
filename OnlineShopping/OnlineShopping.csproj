@@ -326,6 +326,7 @@
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\_UserAccount.cshtml" />
     <Content Include="Views\Account\Transaction.cshtml" />
+    <Content Include="Views\Cart\OrderSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

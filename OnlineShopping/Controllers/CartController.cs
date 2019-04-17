@@ -20,8 +20,8 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Index()
         {
-            IList<ProductViewModel> products = GetCartFromCookie();
-            //IList<ProductViewModel> products = GetCartDataSession();
+            IList<ProductViewModel> products = 
+                (AccountController.IsLogged) ? GetUserCart() : GetCartFromCookie();
             return View("Cart", new CartViewModel() { Products = products });
         }
 
@@ -116,6 +116,20 @@ namespace OnlineShopping.Controllers
             return PartialView("_CartTable", items);
         }
 
+        public ActionResult Checkout()
+        {
+            if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
+
+            //create transaction
+
+
+            //show success page
+            return View("OrderSuccess");
+        }
+
+
+        #region private
+
         private IList<ProductViewModel> GetCartFromCookie()
         {
             var cartProducts = new List<ProductViewModel>();
@@ -144,14 +158,17 @@ namespace OnlineShopping.Controllers
             return cartProducts;
         }
 
-        private IList<ProductViewModel> GetCartFromSession()
+        private IList<ProductViewModel> GetUserCart()
         {
+            var items = new List<ProductViewModel>();
             var cartItems = Session["productIds"] as Dictionary<int, int>;    //id + quantity
-            if (cartItems == null || cartItems.Count == 0) return null;
+            if (cartItems == null || cartItems.Count == 0) return items;
 
 
 
-            return null;
+            return items;
         }
+
+        #endregion
     }
 }
