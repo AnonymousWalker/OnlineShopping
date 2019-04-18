@@ -20,18 +20,9 @@
                 <td><h4>@product.ProductName</h4></td>
                 <td>@product.Quantity</td>
                 <td>
-                    @if (product.SalePrice == 0)
-                    {
-                        <h4>
-                            $ @Html.DisplayFor(x => product.Price)
-                        </h4>
-                    }
-                    else
-                    {
-                        <h4>
-                            $ @Html.DisplayFor(x => product.SalePrice)
-                        </h4>
-                    }
+                    <h4>
+                        $ @Html.DisplayFor(x => product.Amount)
+                    </h4>
                 </td>
                 <td>
                     <span>

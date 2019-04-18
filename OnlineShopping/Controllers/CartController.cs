@@ -20,7 +20,7 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Index()
         {
-            IList<ProductViewModel> products = 
+            IList<CartProductViewModel> products = 
                 (AccountController.IsLogged) ? GetUserCartData(Convert.ToInt32(Session["UserID"])) 
                                             : GetCartDataFromCookie();
             return View("Cart", new CartViewModel() { Products = products });
@@ -101,21 +101,28 @@ namespace OnlineShopping.Controllers
         public ActionResult Checkout()
         {
             if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
-
-            //create transaction
+            
             var uID = Convert.ToInt32(Session["UserID"]);
             var orderItems = _service.GetUserCartData(uID);
+            var cart = new CartViewModel { Products = orderItems };
+
+            if (orderItems.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            //create transaction
+            var transaction = _service.CreateTransaction(uID, cart);
+            ViewBag.OrderId = transaction.TransactionId;
             _service.RemoveFromUserCart(uID);
-            //show success page
-            return View("OrderSuccess", new CartViewModel { Products = orderItems });
+            return View("OrderSuccess", cart);
         }
 
 
         #region private
 
-        private IList<ProductViewModel> GetCartDataFromCookie()
+        private IList<CartProductViewModel> GetCartDataFromCookie()
         {
-            var cartProducts = new List<ProductViewModel>();
+            var cartProducts = new List<CartProductViewModel>();
             var cartCookie = Request.Cookies["cart"];
 
             if (cartCookie == null || !cartCookie.HasKeys)
@@ -135,16 +142,22 @@ namespace OnlineShopping.Controllers
             foreach (var id in productIds)
             {
                 var product = _service.GetProductInfo(id.Key);
-                product.Quantity = id.Value;
-                product.Price *= product.Quantity;
-                cartProducts.Add(product);
+                cartProducts.Add(new CartProductViewModel
+                {
+                    ProductId = product.ProductId,
+                    ProductName = product.ProductName,
+                    Price = product.Price,
+                    SalePrice = product.SalePrice,
+                    Quantity = id.Value,
+                    ImageSource = product.ImageSource
+                });
             }
             return cartProducts;
         }
 
-        private IList<ProductViewModel> GetUserCartData(int userId)
+        private IList<CartProductViewModel> GetUserCartData(int userId)
         {
-            return (userId == 0) ? new List<ProductViewModel>() : _service.GetUserCartData(userId);
+            return (userId == 0) ? new List<CartProductViewModel>() : _service.GetUserCartData(userId);
         }
 
         #endregion

@@ -173,24 +173,32 @@ namespace OnlineShopping.Service
             Db.SaveChanges();
         }
 
-        public IList<ProductViewModel> GetUserCartData(int userId)
+        public IList<CartProductViewModel> GetUserCartData(int userId)
         {
-            var cartProduct = Db.Carts.Where(c => c.UserId == userId)
+            var products= Db.Carts.Where(c => c.UserId == userId)
                             .Join(Db.Products, c => c.ProductId, p => p.ProductId,
                                 (c, p) => new ProductViewModel
                                 {
                                     ProductId = p.ProductId,
                                     ProductName = p.ProductName,
-                                    Category = p.Category,
-                                    Price = p.Price * p.Quantity,
-                                    SalePrice = p.SalePrice * p.Quantity,
+                                    Price = p.Price,
+                                    SalePrice = p.SalePrice,
                                     Quantity = c.Quantity,
-                                    Description = p.Description,
-                                    DateCreated = p.DateCreated,
                                     Image = p.Images.FirstOrDefault()
                                 }).ToList();
             //mapping img
-            return MapImageToModel(cartProduct);
+            products = MapImageToModel(products).ToList();
+            var cartItems = products.Select(p => new CartProductViewModel
+            {
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                Price = p.Price,
+                SalePrice = p.SalePrice,
+                Quantity = p.Quantity,
+                ImageSource = p.ImageSource
+            }).ToList();
+
+            return cartItems;
         }
 
         public void AddToUserCart(int userId, int productId)
@@ -231,6 +239,33 @@ namespace OnlineShopping.Service
             Db.SaveChanges();
         }
 
+        public Transaction CreateTransaction(int userId, CartViewModel cart)
+        {
+            var newTransaction = Db.Transactions.Add(new Transaction
+            {
+                UserId = userId,
+                TotalAmount = cart.TotalPrice,
+                Date = DateTime.Now
+            });
+            var transDetails = new List<TransactionDetail>();
+            foreach (var item in cart.Products)
+            {
+                transDetails.Add(new TransactionDetail
+                {
+                    ProductId = item.ProductId,
+                    TransactionId = newTransaction.TransactionId,
+                    Quantity = item.Quantity,
+                    Amount = item.Amount
+                });
+            }
+            var tDetails = Db.TransactionDetails.AddRange(transDetails);
+            Db.SaveChanges();
+            newTransaction.TransactionDetail = tDetails.ToList();
+
+            return newTransaction;
+        }
+        #region private
+
         private IList<ProductViewModel> MapImageToModel(IList<ProductViewModel> products)
         {
             string imageSrcString = "";
@@ -246,5 +281,7 @@ namespace OnlineShopping.Service
             }
             return products;
         }
+
+        #endregion
     }
 }

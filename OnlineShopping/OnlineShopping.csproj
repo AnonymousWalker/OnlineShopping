@@ -201,6 +201,7 @@
     <Compile Include="Models\DomainModel\Product.cs" />
     <Compile Include="Models\DomainModel\ProductImage.cs" />
     <Compile Include="Models\OnlineShoppingDbContext.cs" />
+    <Compile Include="ViewModel\CartProductViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ResultModel\RequestResult.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />

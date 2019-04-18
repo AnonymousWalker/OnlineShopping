@@ -11,7 +11,7 @@
 <h3 class="text-success">
     We have received your order, please allow us some time to ship. Thank you!
 </h3>
-<h4>Order#: <a href="#">102621</a> - Total Amount: @Html.DisplayFor(x => x.TotalPrice)</h4>
+<h4>Order#: <a href="#">@ViewBag.OrderId</a> - Total Amount: @Html.DisplayFor(x => x.TotalPrice)</h4>
 <h5>@Model.Products.Count item(s)</h5>
 <br />
 <div>

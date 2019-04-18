@@ -12,6 +12,12 @@ $(document).ready(function () {
         clearTimeout(timeOutHidingAlert);
         $(this).parent().hide();
     });
+
+    $("#check-out-btn").click(function (e) {
+        if ($("#countItems").text() == '0') {
+            e.preventDefault();
+        }
+    });
 });
 
 function AlertDismissTimeOut() {
