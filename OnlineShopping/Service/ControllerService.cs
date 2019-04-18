@@ -182,8 +182,8 @@ namespace OnlineShopping.Service
                                     ProductId = p.ProductId,
                                     ProductName = p.ProductName,
                                     Category = p.Category,
-                                    Price = p.Price,
-                                    SalePrice = p.SalePrice,
+                                    Price = p.Price * p.Quantity,
+                                    SalePrice = p.SalePrice * p.Quantity,
                                     Quantity = c.Quantity,
                                     Description = p.Description,
                                     DateCreated = p.DateCreated,
@@ -213,13 +213,20 @@ namespace OnlineShopping.Service
             Db.SaveChanges();
         }
 
-        public void RemoveFromUserCart(int userId, int productId)
+        public void RemoveFromUserCart(int userId, int? productId = null)
         {
-            var isExist = Db.Carts.Any(c => c.UserId == userId && c.ProductId == productId);
-            if (isExist)
+            if (!productId.HasValue)    //remove all 
             {
-                var cartItem = Db.Carts.FirstOrDefault(c => c.UserId == userId && c.ProductId == productId);
-                Db.Carts.Remove(cartItem);
+                Db.Carts.RemoveRange(Db.Carts.Where(c => c.UserId == userId).ToList());
+            }
+            else
+            {
+                var isExist = Db.Carts.Any(c => c.UserId == userId && c.ProductId == productId);
+                if (isExist)
+                {
+                    var cartItem = Db.Carts.FirstOrDefault(c => c.UserId == userId && c.ProductId == productId);
+                    Db.Carts.Remove(cartItem);
+                }
             }
             Db.SaveChanges();
         }

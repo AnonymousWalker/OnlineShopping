@@ -63,7 +63,7 @@ namespace OnlineShopping.Controllers
             return false;
         }
 
-        public bool AddToUserCart(int? productId)
+        private bool AddToUserCart(int? productId)
 
         {
             if (!productId.HasValue) return false;
@@ -103,8 +103,9 @@ namespace OnlineShopping.Controllers
             if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
 
             //create transaction
-            var orderItems = _service.GetUserCartData(Convert.ToInt32(Session["UserID"]));
-
+            var uID = Convert.ToInt32(Session["UserID"]);
+            var orderItems = _service.GetUserCartData(uID);
+            _service.RemoveFromUserCart(uID);
             //show success page
             return View("OrderSuccess", new CartViewModel { Products = orderItems });
         }
@@ -135,6 +136,7 @@ namespace OnlineShopping.Controllers
             {
                 var product = _service.GetProductInfo(id.Key);
                 product.Quantity = id.Value;
+                product.Price *= product.Quantity;
                 cartProducts.Add(product);
             }
             return cartProducts;
