@@ -264,6 +264,13 @@ namespace OnlineShopping.Service
 
             return newTransaction;
         }
+
+        public void GetUserTransactions(int userId)
+        {
+            var trans = Db.Transactions.Where(t => t.UserId == userId).Include(t => t.TransactionDetail);
+        }
+
+
         #region private
 
         private IList<ProductViewModel> MapImageToModel(IList<ProductViewModel> products)
