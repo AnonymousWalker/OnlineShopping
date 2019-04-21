@@ -2,6 +2,7 @@
 
 using OnlineShopping.Service;
 using OnlineShopping.ViewModel;
+using OnlineShopping.ViewModel.ResultModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,82 @@ namespace OnlineShopping.Controllers
 
         public ActionResult Index()
         {
-            IList<CartProductViewModel> products = 
-                (AccountController.IsLogged) ? GetUserCartData(Convert.ToInt32(Session["UserID"])) 
+            IList<CartProductViewModel> products =
+                (AccountController.IsLogged) ? GetUserCartData(Convert.ToInt32(Session["UserID"]))
                                             : GetCartDataFromCookie();
             return View("Cart", new CartViewModel() { Products = products });
         }
 
         public bool AddToCart(int? productId)
         {
-            return (AccountController.IsLogged) ? AddToUserCart(productId) : AddToCartCookie(productId);
+            bool isSuccess = (AccountController.IsLogged)? AddToUserCart(productId) : AddToCartCookie(productId);
+            //var result = new RequestResult {
+            //    HasError = !isSuccess,
+            //    DataString = GetCartCounter().ToString()
+            //};
+            //return Json(result, JsonRequestBehavior.AllowGet);
+            return isSuccess;
         }
 
-        public bool AddToCartCookie(int? productId)
+        
+
+        public ActionResult RemoveFromCart(int? productId)    //ajax 
+        {
+            var cartData = new CartViewModel();
+            if (!productId.HasValue) return PartialView("_CartTable", cartData);
+
+            if (!AccountController.IsLogged)
+            {
+                var cookie = Request.Cookies["cart"];
+                if (cookie == null || !cookie.HasKeys)
+                {
+                    return PartialView("_CartTable", cartData);
+                }
+                string productIdString = productId.ToString();
+                if (cookie.Values["product" + productIdString] != null)
+                {
+                    cookie.Values.Remove("product" + productIdString);
+                    Response.Cookies.Set(cookie);   //update cookie to client
+                }
+            }
+            else
+            {
+                _service.RemoveFromUserCart(Convert.ToInt32(Session["UserID"]), (int)productId);
+            }
+            return PartialView("_CartTable", cartData);
+        }
+
+        public ActionResult Checkout()
+        {
+            if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
+
+            var uID = Convert.ToInt32(Session["UserID"]);
+            var orderItems = _service.GetUserCartData(uID);
+            var cart = new CartViewModel { Products = orderItems };
+
+            if (orderItems.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            //create transaction
+            var transaction = _service.CreateTransaction(uID, cart);
+            ViewBag.OrderId = transaction.TransactionId;
+            _service.RemoveFromUserCart(uID);
+            return View("OrderSuccess", cart);
+        }
+
+        public int GetCartCounter()
+        {
+            if (AccountController.IsLogged)
+            {
+                return GetUserCartData(Convert.ToInt32(Session["UserID"])).Count;
+            }
+            return GetCartDataFromCookie().Count;
+        }
+
+        #region private
+
+        private bool AddToCartCookie(int? productId)
         {
             if (!productId.HasValue) return false;
             var currentCookie = Request.Cookies["cart"];    //Request.Cookie is from Client
@@ -64,61 +129,12 @@ namespace OnlineShopping.Controllers
         }
 
         private bool AddToUserCart(int? productId)
-
         {
             if (!productId.HasValue) return false;
 
             _service.AddToUserCart(Convert.ToInt32(Session["UserID"]), (int)productId);
             return true;
         }
-
-        public ActionResult RemoveFromCart(int? productId)    //ajax 
-        {
-            var cartData = new CartViewModel();
-            if (!productId.HasValue) return PartialView("_CartTable", cartData);
-
-            if (!AccountController.IsLogged)
-            {
-                var cookie = Request.Cookies["cart"];
-                if (cookie == null || !cookie.HasKeys)
-                {
-                    return PartialView("_CartTable", cartData);
-                }
-                string productIdString = productId.ToString();
-                if (cookie.Values["product" + productIdString] != null)
-                {
-                    cookie.Values.Remove("product" + productIdString);
-                    Response.Cookies.Set(cookie);   //update cookie to client
-                }
-            }
-            else
-            {
-                _service.RemoveFromUserCart(Convert.ToInt32(Session["UserID"]), (int)productId);
-            }
-            return PartialView("_CartTable", cartData);
-        }
-
-        public ActionResult Checkout()
-        {
-            if (!AccountController.IsLogged) return RedirectToAction("Login", "Account");
-            
-            var uID = Convert.ToInt32(Session["UserID"]);
-            var orderItems = _service.GetUserCartData(uID);
-            var cart = new CartViewModel { Products = orderItems };
-
-            if (orderItems.Count == 0)
-            {
-                return RedirectToAction("Index");
-            }
-            //create transaction
-            var transaction = _service.CreateTransaction(uID, cart);
-            ViewBag.OrderId = transaction.TransactionId;
-            _service.RemoveFromUserCart(uID);
-            return View("OrderSuccess", cart);
-        }
-
-
-        #region private
 
         private IList<CartProductViewModel> GetCartDataFromCookie()
         {

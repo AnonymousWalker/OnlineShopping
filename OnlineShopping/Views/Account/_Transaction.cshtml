@@ -1,7 +1,7 @@
 ﻿@model TransactionViewModel
 
 <h4>Order Number: <a>@Model.TransactionId</a> - Total Amount: $@Model.TotalAmount</h4>
-<h4>Purchase Date: @Model.DatePurchased</h4>
+<h4>Date Purchased: @Html.DisplayFor(x=>x.DatePurchased)</h4>
 <table class="order-detail-tb table">
     <thead>
         <tr>
@@ -24,7 +24,7 @@
                 <td>@item.Quantity</td>
                 <td>
                     <h4>
-                        $ @Html.DisplayFor(x => item.Amount)
+                        $ @Html.DisplayFor(x => item.Price)
                     </h4>
                 </td>
             </tr>

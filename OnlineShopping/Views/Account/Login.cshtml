@@ -26,8 +26,11 @@
             <button id="sign-in-btn" class="btn btn-primary btn-block">Sign in</button>
         </div>
         <hr>
-        <p class="text-center">Don't have an account? <a href="@Url.Action("SignUp","Account")" >Sign up here</a></p>
+        <p class="text-center">Don't have an account? <a href="@Url.Action("SignUp","Account")">Sign up here</a></p>
     }
 </div>
 
-@Scripts.Render("~Script/Custom/login.js")
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Custom/login.js")
+}

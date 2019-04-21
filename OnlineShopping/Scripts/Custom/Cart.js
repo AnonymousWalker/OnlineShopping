@@ -1,10 +1,10 @@
-﻿//Pop-up alert 
-// <<
+﻿
 var timeOutHidingAlert;
 $(document).ready(function () {
+    getCartCounter();
+
     $("[name='AddtoCart']").click(function (e) {
         e.preventDefault();
-        SetTimeOut();
         addToCart(this);
     });  
 
@@ -20,6 +20,8 @@ $(document).ready(function () {
     });
 });
 
+//Pop-up alert 
+// <<
 function AlertDismissTimeOut() {
     timeOutHidingAlert = setTimeout(function () {
         $("#addToCartSuccess").hide();
@@ -34,6 +36,16 @@ function SetTimeOut() {     //show pop-up alert
 
 // >>
 
+function getCartCounter() {
+    var urlString = $("#CartCounterUrl").val();
+    $.ajax({
+        url: urlString,
+        type: "get",
+        success: function (response) {
+            $("#cart-counter").text(response);
+        }
+    });
+}
 function addToCart(obj) {   //add to cookie
     var id = obj.value;
     if (id == null || typeof id === "undefined") return;
@@ -44,26 +56,14 @@ function addToCart(obj) {   //add to cookie
         data: {
             productId: id,
         },
-        success: function (result) {    //should return with success or failure -> pop-up
-            //
+        success: function (response) {    //should return with success or failure -> pop-up
+            if (response == "True") {
+                SetTimeOut();
+            }
+            getCartCounter();
         }
     });
 
-}
-
-function addToCartSession(obj) {   //add to session
-    //obj.value is the productId
-    var urlAction = $("#AddToCartUrl").val();
-    $.ajax({
-        url: urlAction,
-        type: "get",
-        data: {
-            productId: obj.value,
-        },
-        success: function (result) {    //should return with success or failure -> pop-up
-            //
-        }
-    });
 }
 
 function removeFromCart(obj) {

@@ -3,9 +3,9 @@
     ViewBag.Title = "Product Title";
 }
 @Styles.Render("~/Content/Custom/product.css")
-<div name="separator">
-    <br />
-</div>
+@Html.Hidden("AddToCartUrl", Url.Action("AddToCart", "Cart"))
+@Html.Hidden("ProductId", Model.ProductId)
+<br />
 <div name="productInfo" class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -58,15 +58,19 @@
                     @if (Model.SalePrice > 0)
                     {
                         <h4>$ <strike>@Html.DisplayFor(x => x.Price)</strike></h4>
-                        <h3>$ @Html.DisplayFor(x=>x.SalePrice)</h3>
+                        <h3>$ @Html.DisplayFor(x => x.SalePrice)</h3>
                     }
                     else
                     {
-                        <h4>$ @Html.DisplayFor(x=>x.Price) </h4>
+                        <h4>$ @Html.DisplayFor(x => x.Price) </h4>
                     }
-                    <button id="buynowbtn" type="button" class="btn btn-lg btn-danger">Buy Now</button>
+                    <button id="buy-btn" type="button" class="btn btn-lg btn-danger">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Custom/product-page.js")
+}

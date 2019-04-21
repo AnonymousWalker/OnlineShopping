@@ -28,9 +28,10 @@
                     </div>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index","Cart")">
+                    @Html.Hidden("CartCounterUrl", Url.Action("GetCartCounter", "Cart"))
+                    <a id="cart-link" href="@Url.Action("Index","Cart")">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
-                        <i>1</i>
+                        <sup id="cart-counter"></sup>
                     </a>
                 </li>
                 <li>

@@ -11,5 +11,6 @@ namespace OnlineShopping.ViewModel.ResultModel
         public ResultCode ResultCode { get; set; } = ResultCode.Success;
         public bool HasError { get; set; } = false;
         public string Message { get; set; } = "";
+        public string DataString { get; set; }
     }
 }
