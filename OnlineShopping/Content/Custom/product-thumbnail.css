@@ -27,8 +27,7 @@ h4 > a{
 .thumbnailImg {
     max-width: 100%;
     max-height: 100%;
-    padding-left:10px;
-    padding-right:10px;
+    padding: 5px;
 }
 
 .square {

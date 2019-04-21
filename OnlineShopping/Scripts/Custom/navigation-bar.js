@@ -4,23 +4,9 @@
             var text = $(this).val();
             var url = $(this).data("url");
             window.location.href = url+"/?query="+text;
-            //$.ajax({
-            //    url: $(this).data("url"),
-            //    type: "get",
-            //    data: {
-            //        query: text
-            //    },
-            //    success: function (result) {
-            //        window.location = result;
-            //    }
-            //});
         }
 
     });
 
-    //$("#nav-account").hover(function (e) {
-    //    $(".login-popup-area").show();
-    //}, function (e) {
-    //    $(".login-popup-area").hide();
-    //});
+
 });

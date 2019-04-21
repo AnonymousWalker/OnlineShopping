@@ -21,7 +21,7 @@ namespace OnlineShopping.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)    //Fluent API
         {
-            
+
             modelBuilder.Entity<Cart>()
                         .HasKey(c => new { c.ProductId, c.UserId });    //config composite PKs 
 
@@ -43,6 +43,8 @@ namespace OnlineShopping.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ProductImage> Images { get; set; }
-        
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
     }
 }

@@ -201,6 +201,7 @@
     <Compile Include="Models\DomainModel\Product.cs" />
     <Compile Include="Models\DomainModel\ProductImage.cs" />
     <Compile Include="Models\OnlineShoppingDbContext.cs" />
+    <Compile Include="ViewModel\CartProductViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ResultModel\RequestResult.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="ViewModel\ImageModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ProductWithCategoryViewModel.cs" />
+    <Compile Include="ViewModel\TransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -246,6 +248,7 @@
     <Content Include="Scripts\Custom\Cart.js" />
     <Content Include="Scripts\Custom\login.js" />
     <Content Include="Scripts\Custom\navigation-bar.js" />
+    <Content Include="Scripts\Custom\product-page.js" />
     <Content Include="Scripts\Custom\UploadImage.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -327,7 +330,9 @@
     <Content Include="Views\Account\SignUpSuccess.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\_UserAccount.cshtml" />
-    <Content Include="Views\Account\Transaction.cshtml" />
+    <Content Include="Views\Account\Transactions.cshtml" />
+    <Content Include="Views\Cart\OrderSuccess.cshtml" />
+    <Content Include="Views\Account\_Transaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

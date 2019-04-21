@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,10 +10,10 @@ namespace OnlineShopping.ViewModel
     {
         public CartViewModel()
         {
-            Products = new List<ProductViewModel>();
+            Products = new List<CartProductViewModel>();
         }
-        public double TotalPrice => Products.Sum(x => (x.SalePrice==0)? x.Price : x.SalePrice);
-        public IList<ProductViewModel> Products { get; set; }
-
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        public double TotalPrice => Products.Sum(x => x.Amount);
+        public IList<CartProductViewModel> Products { get; set; }
     }
 }

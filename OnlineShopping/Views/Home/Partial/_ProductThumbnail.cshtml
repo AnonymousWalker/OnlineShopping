@@ -4,7 +4,7 @@
     <div class="thumbnail">
         <div class="square">
             <a href="@Url.Action("Index","Product", new { id = Model.ProductId })">
-                <img class="thumbnailImg" src="@Model.ImageSource" />
+                <img width="220" height="200" class="thumbnailImg" src="@Model.ImageSource" />
             </a>
         </div>
         <div>
@@ -16,7 +16,6 @@
             <p class="productname">
                 @if (Model.SalePrice > 0)
                 {
-                    @*<p><strike>@("$ " + Html.DisplayFor(x => x.Price))</strike></p>*@
                     @("$ " + Html.DisplayFor(x => x.SalePrice))
                 }
                 else

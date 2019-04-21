@@ -13,12 +13,12 @@ namespace OnlineShopping.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private ControllerService controllerService;
+        private ControllerService _service;
         public static bool IsLogged = false;
 
         public AccountController(ControllerService service)
         {
-            controllerService = service;
+            _service = service;
         }
 
         public ActionResult Index()
@@ -37,7 +37,7 @@ namespace OnlineShopping.Controllers
         [AllowAnonymous]
         public ActionResult SignIn(LoginViewModel model)
         {
-            var user = controllerService.AuthenticateUser(model.Username, model.Password);
+            var user = _service.AuthenticateUser(model.Username, model.Password);
             if (user != null)
             {
                 Session["UserID"] = user.UserId;
@@ -66,7 +66,7 @@ namespace OnlineShopping.Controllers
             {
                 return View(model);
             }
-                var user = controllerService.AuthenticateUser(model.Username, model.Password);
+                var user = _service.AuthenticateUser(model.Username, model.Password);
             if (user != null && user.Username == model.Username)
             {
                 model.HasError = true;
@@ -74,7 +74,7 @@ namespace OnlineShopping.Controllers
                 model.Message = "This username is already exist.";
                 return View("Login", model);
             }
-            bool isSuccess = controllerService.CreateUserAccount(model);
+            bool isSuccess = _service.CreateUserAccount(model);
             if (!isSuccess)
             {
                 model.HasError = true;
@@ -92,9 +92,14 @@ namespace OnlineShopping.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Transaction()
+        public ActionResult Transactions()
         {
-            return View();
+            if (IsLogged)
+            {
+                var model = _service.GetUserTransactions(Convert.ToInt32(Session["UserID"]));
+                return View(model);
+            }
+            return RedirectToAction("Login");
         }
     }
 }

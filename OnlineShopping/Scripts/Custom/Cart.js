@@ -1,10 +1,10 @@
-﻿//Pop-up alert 
-// <<
+﻿
 var timeOutHidingAlert;
 $(document).ready(function () {
+    getCartCounter();
+
     $("[name='AddtoCart']").click(function (e) {
         e.preventDefault();
-        SetTimeOut();
         addToCart(this);
     });  
 
@@ -12,8 +12,16 @@ $(document).ready(function () {
         clearTimeout(timeOutHidingAlert);
         $(this).parent().hide();
     });
+
+    $("#check-out-btn").click(function (e) {
+        if ($("#countItems").text() == '0') {
+            e.preventDefault();
+        }
+    });
 });
 
+//Pop-up alert 
+// <<
 function AlertDismissTimeOut() {
     timeOutHidingAlert = setTimeout(function () {
         $("#addToCartSuccess").hide();
@@ -28,40 +36,34 @@ function SetTimeOut() {     //show pop-up alert
 
 // >>
 
+function getCartCounter() {
+    var urlString = $("#CartCounterUrl").val();
+    $.ajax({
+        url: urlString,
+        type: "get",
+        success: function (response) {
+            $("#cart-counter").text(response);
+        }
+    });
+}
 function addToCart(obj) {   //add to cookie
-    var d = new Date();
     var id = obj.value;
     if (id == null || typeof id === "undefined") return;
-    //d.setTime(d.getTime() + (24 * 60 * 60 * 1000)); //cookie lasts 1h
-    //var timeExpire = "expires=" + d.toUTCString();
-    //document.cookie = "product" + id + "=1" + ";" + timeExpire + ";path=/";
     var urlString = $("#AddToCartUrl").val();
     $.ajax({
         url: urlString,
         type: "get",
         data: {
-            productId: obj.value,
+            productId: id,
         },
-        success: function (result) {    //should return with success or failure -> pop-up
-            //
+        success: function (response) {    //should return with success or failure -> pop-up
+            if (response == "True") {
+                SetTimeOut();
+            }
+            getCartCounter();
         }
     });
 
-}
-
-function addToCartSession(obj) {   //add to session
-    //obj.value is the productId
-    var urlAction = $("#AddToCartUrl").val();
-    $.ajax({
-        url: urlAction,
-        type: "get",
-        data: {
-            productId: obj.value,
-        },
-        success: function (result) {    //should return with success or failure -> pop-up
-            //
-        }
-    });
 }
 
 function removeFromCart(obj) {
