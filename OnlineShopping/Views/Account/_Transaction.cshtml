@@ -1,0 +1,33 @@
+﻿@model TransactionViewModel
+
+<h4>Order Number: <a>@Model.TransactionId</a> - Total Amount: $@Model.TotalAmount</h4>
+<h4>Purchase Date: @Model.DatePurchased</h4>
+<table class="order-detail-tb table">
+    <thead>
+        <tr>
+            <th class="col-md-3"><b>Product Listing</b></th>
+            <th id="name" class="col-md-5"><b>ProductName</b></th>
+            <th class="col-md-2"><b>Quantity</b></th>
+            <th class="col-md-2"><b>Amount</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TransactionProducts)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Index","Product", new { id = item.ProductId })">
+                        <img width="140" height="100" class="thumbnailImg" src="@item.ImageSource" />
+                    </a>
+                </td>
+                <td><h4>@item.ProductName</h4></td>
+                <td>@item.Quantity</td>
+                <td>
+                    <h4>
+                        $ @Html.DisplayFor(x => item.Amount)
+                    </h4>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

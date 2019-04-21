@@ -1,14 +1,24 @@
-﻿
+﻿@model List<TransactionViewModel>
 @{
-    ViewBag.Title = "Transaction";
+    ViewBag.Title = "My Orders";
+}
+<style>
+    .transaction-section {
+        border: 1.5px solid #86689c;
+        border-radius: 5px;
+        padding: 10px 20px 0px 20px;
+        margin: 20px auto 10px auto;
+    }
+</style>
+<h2 style="margin-left:-30px">Order History</h2>
+@foreach (var transaction in Model)
+{
+    <div class="transaction-section">
+        @Html.Partial("_Transaction", transaction)
+    </div>
 }
 
-<h2>Transaction</h2>
-
-@Styles.Render("~/Content/Custom/cart.css")
-
-<h3>My Transaction</h3>
 @section scripts
 {
-    @Scripts.Render("~/Scripts/Custom/Cart.js")
+
 }

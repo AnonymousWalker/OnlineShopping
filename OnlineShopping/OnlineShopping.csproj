@@ -213,7 +213,7 @@
     <Compile Include="ViewModel\ImageModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ProductWithCategoryViewModel.cs" />
-    <Compile Include="ViewModel\UserTransactionsViewModel.cs" />
+    <Compile Include="ViewModel\TransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -331,6 +331,7 @@
     <Content Include="Views\Shared\_UserAccount.cshtml" />
     <Content Include="Views\Account\Transactions.cshtml" />
     <Content Include="Views\Cart\OrderSuccess.cshtml" />
+    <Content Include="Views\Account\_Transaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

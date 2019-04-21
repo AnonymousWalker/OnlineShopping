@@ -265,9 +265,47 @@ namespace OnlineShopping.Service
             return newTransaction;
         }
 
-        public void GetUserTransactions(int userId)
+        public IList<TransactionViewModel> GetUserTransactions(int userId)
         {
-            var trans = Db.Transactions.Where(t => t.UserId == userId).Include(t => t.TransactionDetail);
+            var trans = Db.Transactions.Where(t => t.UserId == userId)
+                                    .Include(t => t.TransactionDetail)
+                                    .OrderByDescending(t => t.Date).ToList();
+
+            var listTrans = new List<TransactionViewModel>();
+            foreach (var tr in trans)
+            {
+                // map trans --> transViewModel
+                var transactionVM = new TransactionViewModel() {
+                    TransactionId = tr.TransactionId,
+                    DatePurchased = tr.Date,
+                    TotalAmount = tr.TotalAmount
+                };
+                listTrans.Add(transactionVM);
+            }
+
+            foreach (var tr in trans)
+            {
+                var transProducts = new List<CartProductViewModel>();
+                CartProductViewModel transItem;
+                foreach (var item in tr.TransactionDetail)
+                {
+                    transItem = new CartProductViewModel();
+                    //map product info <--> transDetail
+                    transItem.ProductId = item.ProductId;
+                    transItem.Quantity = item.Quantity;
+                    transItem.Price = item.Amount;
+                    var product = GetProductImage(item.ProductId);
+                    transItem.ProductName = product.ProductName;
+                    transItem.ImageSource = product.ImageSource;
+
+                    //map Trans.TransDetail <--> TransVM.TransItems
+                    transProducts.Add(transItem);
+                }
+                listTrans.Where(trVM => trVM.TransactionId == tr.TransactionId).FirstOrDefault()
+                                                    .TransactionProducts = transProducts;
+            }
+
+            return listTrans;
         }
 
 
@@ -289,6 +327,25 @@ namespace OnlineShopping.Service
             return products;
         }
 
+        private ProductViewModel GetProductImage(int id)
+        {
+            var product = Db.Products.Find(id);
+            var image = product.Images.FirstOrDefault();
+            string imagesrc = "";
+            if (image != null)
+            {
+                var base64img = Convert.ToBase64String(image.Content);
+                imagesrc = string.Format("data:image/jpg;base64,{0}", base64img);
+            }
+            return new ProductViewModel
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Price = product.Price,
+                SalePrice = product.SalePrice,
+                ImageSource = imagesrc
+            };
+        }
         #endregion
     }
 }

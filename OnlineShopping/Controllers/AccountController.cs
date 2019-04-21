@@ -96,9 +96,10 @@ namespace OnlineShopping.Controllers
         {
             if (IsLogged)
             {
-                _service.GetUserTransactions(Convert.ToInt32(Session["UserID"]));
+                var model = _service.GetUserTransactions(Convert.ToInt32(Session["UserID"]));
+                return View(model);
             }
-            return View();
+            return RedirectToAction("Login");
         }
     }
 }
