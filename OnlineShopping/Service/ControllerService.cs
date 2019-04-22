@@ -107,6 +107,7 @@ namespace OnlineShopping.Service
                 ProductName = product.ProductName,
                 Category = product.Category,
                 Price = product.Price,
+                Quantity = product.Quantity,
                 SalePrice = product.SalePrice,
                 Description = product.Description,
                 DateCreated = product.DateCreated,

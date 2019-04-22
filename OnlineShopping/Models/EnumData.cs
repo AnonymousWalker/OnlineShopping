@@ -16,13 +16,14 @@ namespace OnlineShopping.Models
         USB,
         HDD,
         SSD,
-        ExternalStorage,
         RAM,
         CPU,
         GraphicCard,
         Laptop,
         Mouse,
-        Keyboard
+        Keyboard,
+        Monitor,
+        Desktop
     }
 
     public enum ResultCode
