@@ -6,14 +6,14 @@
     background-color: #062B73;
 }
 
-.navbar-inverse .navbar-brand {
-color: #89f442;
-}
+    .navbar-inverse .navbar-brand {
+        color: #89f442;
+    }
 
-.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
-    color: #FFFF1C;
-    background-color: transparent;
-}
+        .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+            color: #FFFF1C;
+            background-color: transparent;
+        }
 
 #searchpane {
     padding-top: 8px;
@@ -34,35 +34,35 @@ color: #89f442;
     right: -40px;
 }
 
-.login-popup-area a {
-    text-decoration:none;
-    color: #9c066d;
-}
+    .login-popup-area a {
+        text-decoration: none;
+        color: #fff;
+    }
 
 .column-flex {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
-.column-flex::after {       /*clear floats after columns*/
-    content: "";
-    display: table;
-    clear: both;
-}
+    .column-flex::after { /*clear floats after columns*/
+        content: "";
+        display: table;
+        clear: both;
+    }
 
 #nav-account {
     width: 40px;
 }
 
-#nav-account:hover .login-popup-area {
-    visibility:visible;
-}
+    #nav-account:hover .login-popup-area {
+        visibility: visible;
+    }
 
 .btn-sign-in {
     cursor: pointer;
     margin: auto;
     width: 70%;
-    background: #b3ff85;
+    background: #4c6da9;
     border-radius: 5px;
     border: 1px groove lightgrey;
 }

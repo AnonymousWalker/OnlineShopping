@@ -14,7 +14,8 @@ namespace OnlineShopping
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
-            //container.RegisterType<Models.DatabaseContext>();
+            //container.RegisterType<Models.OnlineShoppingDbContext>();
+            
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
